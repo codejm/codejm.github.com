@@ -243,135 +243,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/ubuntu下右键以vim方式打开/" itemprop="url">
-                  ubuntu下右键以vim方式打开
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-02T19:31:21+08:00" content="2016-06-02">
-              2016-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/02/ubuntu下右键以vim方式打开/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/ubuntu下右键以vim方式打开/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>编译安装vim7.4之后,打开文件选择打开方式找不到gvim,在/usr/share/applications目录下添加gvim.desktop无效后只能另谋出路了。</p>
-<h2 id="修改gedit为gvim"><a href="#修改gedit为gvim" class="headerlink" title="修改gedit为gvim"></a>修改gedit为gvim</h2><pre class="brush: shell; gutter: true">
-sudo vim /usr/share/applications/gedit.desktop
-// 修改
-Name=gvim
-// 也可以直接写gvim %U --remote-tab-silent 为在tab打开新文件
-Exec=gvim --remote-tab-silent %U
-</pre>
-
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>ubunut 13.04</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/06/02/First/" itemprop="url">
                   First
                 </a>
@@ -1525,6 +1396,135 @@ $(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)
           
             <p>把用户目录下的下载、图片、视频、文档修改成对应的英文<br>打开终端：</p>
 <p><pre class="brush: shell; gutter: true"><br>export LANG=en_US<br>xdg-user-dirs-gtk-update<br></pre><br>弹出的对话框选择确定修改,重启系统就会变成修改后的效果了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/09/29/ubuntu下右键以vim方式打开/" itemprop="url">
+                  ubuntu下右键以vim方式打开
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-09-29T19:31:21+08:00" content="2013-09-29">
+              2013-09-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/09/29/ubuntu下右键以vim方式打开/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/09/29/ubuntu下右键以vim方式打开/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>编译安装vim7.4之后,打开文件选择打开方式找不到gvim,在/usr/share/applications目录下添加gvim.desktop无效后只能另谋出路了。</p>
+<h2 id="修改gedit为gvim"><a href="#修改gedit为gvim" class="headerlink" title="修改gedit为gvim"></a>修改gedit为gvim</h2><pre class="brush: shell; gutter: true">
+sudo vim /usr/share/applications/gedit.desktop
+// 修改
+Name=gvim
+// 也可以直接写gvim %U --remote-tab-silent 为在tab打开新文件
+Exec=gvim --remote-tab-silent %U
+</pre>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>ubunut 13.04</p>
 
           
         
