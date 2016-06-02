@@ -1,5 +1,0 @@
-## 1. 图形模式
-* 打开主文件夹，按Ctrl+l，输入smb://192.168.*.* ，出现图形界面，填写正确信息后即可访问。
-
-## 2. 命令行
-* mount //192.168.*.*/share -o user=username,pass=passwd[,uid=1,gid=1] /home/...
