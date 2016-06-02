@@ -243,6 +243,1108 @@
             
               
                 
+                <a class="post-title-link" href="/2013/12/02/linux常用命令/" itemprop="url">
+                  linux常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-12-02T10:23:40+08:00" content="2013-12-02">
+              2013-12-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/12/02/linux常用命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/02/linux常用命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="任务-命令组合"><a href="#任务-命令组合" class="headerlink" title="任务    命令组合"></a>任务    命令组合</h2><p>1    删除0字节文件<br>    find . -type f -size 0 -exec rm -rf {} \;<br>    find . type f -size 0 -delete<br>2    查看进程，按内存从大到小排列<br>    ps -e -o “%C : %p : %z : %a”|sort -k5 -nr<br>3    按cpu利用率从大到小排列<br>    ps -e -o “%C : %p : %z : %a”|sort -nr<br>4    打印说cache里的URL<br>    grep -r -a jpg /data/cache/<em> | strings | grep “http:” | awk -F’http:’ ‘{print “http:”$2;}’<br>5    查看http的并发请求数及其TCP连接状态<br>    netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’<br>6    sed在这个文里Root的一行，匹配Root一行，将no替换成yes。<br>    sed -i ‘/Root/s/no/yes/‘ /etc/ssh/sshd_config<br>7    如何杀掉mysql进程<br>    ps aux |grep mysql |grep -v grep  |awk ‘{print $2}’ |xargs kill -9<br>    killall -TERM mysqld<br>    kill -9 <code>cat /usr/local/apache2/logs/httpd.pid</code><br>8    显示运行3级别开启的服务(从中了解到cut的用途，截取数据)<br>    ls /etc/rc3.d/S</em> |cut -c 15-<br>9    如何在编写SHELL显示多个信息，用EOF<br>    cat &lt;&lt; EOF<br>    +————————————————————–+<br>    |   === Welcome to Tunoff services ===                         |<br>    +————————————————————–+<br>    EOF<br>10    for的用法(如给mysql建软链接)<br>    cd /usr/local/mysql/bin<br>    for i in <em><br>    do ln /usr/local/mysql/bin/$i /usr/bin/$i<br>    done<br>11    取IP地址<br>    ifconfig eth0 |grep “inet addr:” |awk ‘{print $2}’|cut -c 6-<br>    ifconfig | grep ‘inet addr:’| grep -v ‘127.0.0.1’ |cut -d: -f2 | awk ‘{ print $1}’<br>12    内存的大小<br>    free -m |grep “Mem” | awk ‘{print $2}’<br>13    查看80端口的连接，并排序<br>    netstat -an -t | grep “:80” | grep ESTABLISHED | awk ‘{printf “%s %s\n”,$5,$6}’ | sort<br>14    查看Apache的并发请求数及其TCP连接状态<br>    netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’<br>15    统计一下服务器下面所有的jpg的文件的大小<br>    find / -name </em>.jpg -exec wc -c {} \;|awk ‘{print $1}’|awk ‘{a+=$1}END{print a}’<br>16    CPU的数量<br>    cat /proc/cpuinfo |grep -c processor<br>17    CPU负载<br>    cat /proc/loadavg<br>18    CPU负载<br>    mpstat 1 1<br>19    内存空间<br>    free<br>20    磁盘空间<br>    df -h<br>21    如发现某个分区空间接近用尽，可以进入该分区的挂载点，用以下命令找出占用空间最多的文件或目录<br>    du -cks <em> | sort -rn | head -n 10<br>22    磁盘I/O负载<br>    iostat -x 1 2<br>23    网络负载<br>    sar -n DEV<br>24    网络错误<br>    netstat -i<br>    cat /proc/net/dev<br>25    网络连接数目<br>    netstat -an | grep -E “^(tcp)” | cut -c 68- | sort | uniq -c | sort -n<br>26    进程总数<br>    ps aux | wc -l<br>27    查看进程树<br>    ps aufx<br>28    可运行进程数目<br>    vmwtat 1 5<br>29    检查DNS Server工作是否正常，这里以61.139.2.69为例<br>    dig www.baidu.com @61.139.2.69<br>30    检查当前登录的用户个数<br>    who | wc -l<br>31    日志查看、搜索<br>    cat /var/log/rflogview/</em>errors<br>    grep -i error /var/log/messages<br>    grep -i fail /var/log/messages<br>    tail -f -n 2000 /var/log/messages<br>32    内核日志<br>    dmesg<br>33    时间<br>    date<br>34    已经打开的句柄数<br>    lsof | wc -l<br>35    网络抓包，直接输出摘要信息到文件。<br>    tcpdump -c 10000 -i eth0 -n dst port 80 &gt; /root/pkts<br>36    然后检查IP的重复数 并从小到大排序 注意 “-t\  +0” 中间是两个空格，less命令的用法。<br>    less pkts | awk {‘printf $3”\n”‘} | cut -d. -f 1-4 | sort | uniq -c | awk {‘printf $1” “$2”\n”‘} | sort -n -t\  +0<br>37    kudzu查看网卡型号<br>    kudzu –probe –class=network</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/11/24/php转换字符串效率对比/" itemprop="url">
+                  php转换字符串效率对比
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-11-24T14:38:12+08:00" content="2013-11-24">
+              2013-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/11/24/php转换字符串效率对比/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/24/php转换字符串效率对比/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>php 转换字符串有多种方式，哪种效率最高呢。最了一下测试结果如下：</p>
+<p>strval执行时间: 14.7 毫秒<br>settype执行时间: 8.9 毫秒<br>string执行时间: 10.3 毫秒</p>
+<pre class="brush: php; gutter: true">
+<?php
+/**
+ *      [CodeJm!] Author CodeJm[codejm@163.com].
+ *
+ *
+ *      $Id: aaa.php 2013-11-28 16:20:07 codejm $
+ */
+class runtime
+{
+    var $StartTime = 0;
+    var $StopTime = 0;
+    function get_microtime()
+    {
+        list($usec, $sec) = explode(' ', microtime());
+        return ((float)$usec + (float)$sec);
+    }
+    function start()
+    {
+        $this->StartTime = $this->get_microtime();
+    }
+    function stop()
+    {
+        $this->StopTime = $this->get_microtime();
+    }
+    function spent()
+    {
+        return round(($this->StopTime - $this->StartTime) * 1000, 1);
+    }
+}
+//例子
+$runtime= new runtime;
+$runtime->start();
+// code S
+$data = 2.1;
+for($i=0; $i<10000; $i++)="" {="" $datastr="strval($data);" }="" code="" e="" $runtime-="">stop();
+echo "strval执行时间: ".$runtime->spent()." 毫秒<br>";
+$runtime->start();
+// code S
+$data = 2.1;
+for($i=0; $i<10000; $i++)="" {="" $datastr="settype($data," "string");="" }="" code="" e="" $runtime-="">stop();
+echo "settype执行时间: ".$runtime->spent()." 毫秒<br>";
+$runtime->start();
+// code S
+$data = 2.1;
+for($i=0; $i<10000; $i++)="" {="" $datastr="(string)$data;" }="" code="" e="" $runtime-="">stop();
+echo "string执行时间: ".$runtime->spent()." 毫秒<br>";
+?>
+</10000;></10000;></10000;></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/11/20/vim的特殊命令/" itemprop="url">
+                  vim的特殊命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-11-20T19:35:38+08:00" content="2013-11-20">
+              2013-11-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/11/20/vim的特殊命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/20/vim的特殊命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>:w !sudo tee %<br>在Linux系统下面辛苦编辑了一个配置文件，要保存的时候发现要root权限，怎么办？这个命令就是让你不用以root权限来运行VIM但是可以编辑系统文件的命令。</p>
+<p>:earlier 15m<br>把当前文件恢复到15分钟前的状态， 这个时间参数除了分钟，还有很多别的格式。</p>
+<p>删除指定范围 diw 和 di( 和 di”<br>diw 删除当前词<br>di( 或者 di) 删除当前括号内的内容，光标要在括号上，或者括号内<br>di” 删除引号内的内容<br>相同的命令还有ciw , ci( , ci” 还有dt, dt), dt”，ct, ct), ct”</p>
+<p>:! [command] 和 :.! [command]<br>前一个是执行外部命令，后面一个只是在：后面加了一个”.” 好处是把命令的输出直接放在当前行。比如你要在文档里面插入当前日期，就可以用 :.! date</p>
+<p>:%!xxd  把VIM变成Hex Editor<br>:%!xxd -r 从Hex Editor变回去</p>
+<p>:g/rgba/y A<br>把所有包含rgba的行复制到a寄存器里面，然后可以用 “ap粘帖，这里用大写A是取为了把找打的行追加在寄存器里面，否则就只有最后一行被放在了寄存器里面了</p>
+<p>:verbose set xxxxxx?<br>有时候.vimrc的一些配置会被一些插件或者autocommand重新设置，要找出哪些地方设置了这个，就用这个命令， xxxxxx这里泛指VIM的设置项，比如 :verbose set cindent? 就找出来哪些地方设置了cindent</p>
+<p>q:<br>查看命令历史，这个我们应该经常不小心就掉出来了</p>
+<p>gv<br>重新选择上次的选择</p>
+<p>gf， gF<br>gf把光标移到文件名上，比如c文件里面include的头文件，按gf就会打开这个文件<br>gF跟gf已经，这个命令认识“文件名：行号”的格式，可以直接跳转到指定行</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/11/12/cocos2dx初体验/" itemprop="url">
+                  cocos2dx初体验
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-11-12T19:40:36+08:00" content="2013-11-12">
+              2013-11-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/11/12/cocos2dx初体验/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/12/cocos2dx初体验/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="资源图片"><a href="#资源图片" class="headerlink" title="资源图片"></a>资源图片</h2><p><a href="http://www.codejm.com/uploads/2013/11/122458972.png"><img title="122458972.png" alt="122458972.png" src="http://www.codejm.com/uploads/2013/11/122458972.png" class="aligncenter"></a></p>
+<h2 id="代码-HelloWorldScene-cpp："><a href="#代码-HelloWorldScene-cpp：" class="headerlink" title="代码 HelloWorldScene.cpp："></a>代码 HelloWorldScene.cpp：</h2><pre class="brush: shell; gutter: true">
+    CCSize s = CCDirector::sharedDirector()->getWinSize();
+    //
+    //#1：生成动画需要的数据类
+    CCTexture2D *texture=CCTextureCache::sharedTextureCache()->addImage("122458972.png");
+    //
+    CCSpriteFrame *frame0=CCSpriteFrame::createWithTexture(texture,CCRectMake(32*0, 48*0, 32, 48));
+    CCSpriteFrame *frame1=CCSpriteFrame::createWithTexture(texture,CCRectMake(32*1, 48*0, 32, 48));
+    CCSpriteFrame *frame2=CCSpriteFrame::createWithTexture(texture,CCRectMake(32*2, 48*0, 32, 48));
+    CCSpriteFrame *frame3=CCSpriteFrame::createWithTexture(texture,CCRectMake(32*3, 48*0, 32, 48));
+    //
+    CCArray *animFrames = CCArray::create();
+    animFrames->addObject(frame0);
+    animFrames->addObject(frame1);
+    animFrames->addObject(frame2);
+    animFrames->addObject(frame3);
+    //
+    CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames,0.2f);
+    animFrames->release();
+    //
+    CCSprite *heroSprite0=CCSprite::createWithSpriteFrame(frame0);
+    if(!heroSprite0)
+        return false;
+    heroSprite0->setPosition(ccp(16,s.height-24));
+    addChild(heroSprite0,1);
+    CCAnimate *animate=CCAnimate::create(animation);
+    heroSprite0->runAction(CCRepeatForever::create(animate));//一直执行下去
+</pre>
+
+<h2 id="或者改成循环"><a href="#或者改成循环" class="headerlink" title="或者改成循环:"></a>或者改成循环:</h2><pre class="brush: shell; gutter: true">
+    CCSize s = CCDirector::sharedDirector()->getWinSize();
+    //
+    //#1：生成动画需要的数据类
+    CCTexture2D *texture=CCTextureCache::sharedTextureCache()->addImage("122458972.png");
+    CCArray *animFrames = CCArray::create();
+    CCSpriteFrame *frame0 = 0;
+    //
+    for(int i=0; i<4; i++){="" frame0="CCSpriteFrame::createWithTexture(texture,CCRectMake(32*i," 48*0,="" 32,="" 48));="" animframes-="">addObject(frame0);
+    }
+    //
+    CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames,0.2f);
+    animFrames->release();
+    //
+    CCSprite *heroSprite0=CCSprite::createWithSpriteFrame(frame0);
+    if(!heroSprite0)
+        return false;
+    heroSprite0->setPosition(ccp(16,s.height-24));
+    addChild(heroSprite0,1);
+    CCAnimate *animate=CCAnimate::create(animation);
+    heroSprite0->runAction(CCRepeatForever::create(animate));//一直执行下去
+</4;></pre>
+
+<h2 id="编译执行"><a href="#编译执行" class="headerlink" title="编译执行"></a>编译执行</h2><p>make<br>./bin/release/Codejm01</p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果:"></a>效果:</h2><p><a href="http://www.codejm.com/uploads/2013/11/20131104151530.png"><img title="20131104151530.png" alt="20131104151530.png" src="http://www.codejm.com/uploads/2013/11/20131104151530.png" class="aligncenter"></a></p>
+<p>资源来自老G小屋,进行代码升级到coco2d-x 2.2。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/11/02/vim下开发cocos2D/" itemprop="url">
+                  vim下开发cocos2Dx
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-11-02T19:33:30+08:00" content="2013-11-02">
+              2013-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/cocos2dx/" itemprop="url" rel="index">
+                    <span itemprop="name">cocos2dx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/11/02/vim下开发cocos2D/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/02/vim下开发cocos2D/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="声明-本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。"><a href="#声明-本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。" class="headerlink" title="声明:本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。"></a>声明:本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。</h3><h2 id="一、定位项目"><a href="#一、定位项目" class="headerlink" title="一、定位项目"></a>一、定位项目</h2><pre><code>在github上随便找一个项目，我随便找了个前辈的:
+我把放在cocos2d-x 根目录
+git clone https://github.com/gelosie/PlayThePlane.git
+</code></pre><h2 id="二、配置Makefile"><a href="#二、配置Makefile" class="headerlink" title="二、配置Makefile"></a>二、配置Makefile</h2><p>进入prog.linux</p>
+<p>vim Makefile</p>
+<pre class="brush: shell; gutter: true">
+// 项目名称
+EXECUTABLE = PlayThePlane
+INCLUDES = -I.. -I../Classes
+// 项目中Classes下所有cpp文件,特别重要,如果不加入容易提示"未声明的引用"
+SOURCES = main.cpp \
+        ../Classes/AppDelegate.cpp \
+        ../Classes/HelloWorldScene.cpp \
+        ../Classes/CCFoePlane.cpp \
+        ../Classes/CCProps.cpp \
+        ../Classes/IntroLayer.cpp
+// 这里注意路径，定位到cocos2dx的目录
+COCOS_ROOT = ../..
+include $(COCOS_ROOT)/cocos2dx/proj.linux/cocos2dx.mk
+SHAREDLIBS += -lcocos2d
+COCOS_LIBS = $(LIB_DIR)/libcocos2d.so
+$(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
+    @mkdir -p $(@D)
+    $(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(SHAREDLIBS) $(STATICLIBS)
+$(OBJ_DIR)/%.o: %.cpp $(CORE_MAKEFILE_LIST)
+    @mkdir -p $(@D)
+    $(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) $(VISIBILITY) -c $< -o $@
+$(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)
+    @mkdir -p $(@D)
+    $(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) $(VISIBILITY) -c $< -o $@
+</pre>
+
+<h2 id="三、编译"><a href="#三、编译" class="headerlink" title="三、编译"></a>三、编译</h2><pre><code>在prog.linux下执行make
+然后根据提示修改代码代码错误或编译成功。
+</code></pre><h2 id="四、执行"><a href="#四、执行" class="headerlink" title="四、执行"></a>四、执行</h2><pre><code>prog.linux 下执行./bin/release/PlayThePlane
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/10/20/ubuntu访问局域网共享/" itemprop="url">
+                  ubuntu访问局域网共享
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-10-20T08:29:11+08:00" content="2013-10-20">
+              2013-10-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/10/20/ubuntu访问局域网共享/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/10/20/ubuntu访问局域网共享/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>图形模式<br>打开主文件夹，按Ctrl+l，输入smb://192.168.<em>.</em> ，出现图形界面，填写正确信息后即可访问。</li>
+</ol>
+<p>2.命令行<br>mount //192.168.<em>.</em>/share -o user=username,pass=passwd,[uid=1,gid=1] /home/…</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/10/08/ubuntu用户目录中文换成英文/" itemprop="url">
+                  ubuntu用户目录中文换成英文
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-10-08T19:27:07+08:00" content="2013-10-08">
+              2013-10-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/10/08/ubuntu用户目录中文换成英文/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/10/08/ubuntu用户目录中文换成英文/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>把用户目录下的下载、图片、视频、文档修改成对应的英文<br>打开终端：</p>
+<p><pre class="brush: shell; gutter: true"><br>export LANG=en_US<br>xdg-user-dirs-gtk-update<br></pre><br>弹出的对话框选择确定修改,重启系统就会变成修改后的效果了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/09/29/ubuntu下右键以vim方式打开/" itemprop="url">
+                  ubuntu下右键以vim方式打开
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-09-29T19:31:21+08:00" content="2013-09-29">
+              2013-09-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/09/29/ubuntu下右键以vim方式打开/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/09/29/ubuntu下右键以vim方式打开/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>编译安装vim7.4之后,打开文件选择打开方式找不到gvim,在/usr/share/applications目录下添加gvim.desktop无效后只能另谋出路了。</p>
+<h2 id="修改gedit为gvim"><a href="#修改gedit为gvim" class="headerlink" title="修改gedit为gvim"></a>修改gedit为gvim</h2><pre class="brush: shell; gutter: true">
+sudo vim /usr/share/applications/gedit.desktop
+// 修改
+Name=gvim
+// 也可以直接写gvim %U --remote-tab-silent 为在tab打开新文件
+Exec=gvim --remote-tab-silent %U
+</pre>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>ubunut 13.04</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013/08/24/vim编译出错/" itemprop="url">
                   vim编译出错
                 </a>
@@ -496,1125 +1598,11 @@ export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH // 为编译器设定额
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/08/12/ubuntu下vim不能使用剪切版/" itemprop="url">
-                  ubuntu下vim不能使用剪切版
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-08-12T19:18:04+08:00" content="2013-08-12">
-              2013-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/08/12/ubuntu下vim不能使用剪切版/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/08/12/ubuntu下vim不能使用剪切版/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Ubuntu下vim-系统剪贴板为什么不能使用"><a href="#Ubuntu下vim-系统剪贴板为什么不能使用" class="headerlink" title="Ubuntu下vim 系统剪贴板为什么不能使用"></a>Ubuntu下vim 系统剪贴板为什么不能使用</h2><p><strong> 需要在vimrc文件中加入set clipboard+=unnamed </strong><br>有的时候vim没有开启clipboard选项 需要重新(或编译)安装</p>
-<pre class="brush: shell; gutter: true">
-vim --version|grep 'clipboard'
-
--clientserver -clipboard +cmdline_compl +cmdline_hist +cmdline_info +comments
--xterm_clipboard -xterm_save
-
-sudo apt-get remove vim
-sudo apt-get autoremove
-sudo apt-get install vim-full
-</pre>
-
-<p><strong> 解决问题 </strong><br><strong><em> 10.04的源中发现没有了vim-full，不过我们可以使用sudo apt-get instal vim-gnome </em></strong></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/07/30/nohup命令说明/" itemprop="url">
-                  nohup命令说明
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-30T09:13:47+08:00" content="2013-07-30">
-              2013-07-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/07/30/nohup命令说明/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/07/30/nohup命令说明/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="nohup命令"><a href="#nohup命令" class="headerlink" title="nohup命令"></a>nohup命令</h3><p>用途：linux下不间断执行命令(后台一直运行着某些命令) 如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。nohup就是不挂起的意思( no hang up)。<br>语法：nohup Command [Arg …] [&amp;]</p>
-<p>nohup 命令运行由 Command 参数和任何相关的 Arg 参数指定的命令，忽略所有挂断（SIGHUP）信号。在注销后使用 nohup 命令运行后台中的程序。要运行后台中的 nohup 命令，添加 &amp; （ 表示“and”的符号）到命令的尾部。<br>如果不将 nohup 命令的输出重定向，输出将附加到当前目录的 nohup.out 文件中。如果当前目录的 nohup.out 文件不可写，输出重定向到 $HOME/nohup.out 文件中。如果没有文件能创建或打开以用于追加，那么 Command 参数指定的命令不可调用。如果标准错误是一个终端，那么把指定的命令写给标准错误的所有输出作为标准输出重定向到相同的文件描述符。<br>退出状态：该命令返回下列出口值：<br>126 可以查找但不能调用 Command 参数指定的命令。<br>127 nohup 命令发生错误或不能查找由 Command 参数指定的命令。<br>否则，nohup 命令的退出状态是 Command 参数指定命令的退出状态。</p>
-<p>示例：<br>nohup php /www/1.php &gt; log.log &amp;</p>
-<p>说明：不间断执行php文件。不间断就是说你用户注销了，也会继续执行。直到执行完成这个php才结束。输出重定向到指定文件log.log,可以加路径。 &amp;：后台运行</p>
-<p>批量kill<br>ps x|grep xxxxx|awk ‘{print $1}’|xargs kill -9</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/07/25/什么是cgi-fastcgi-php-fpm/" itemprop="url">
-                  什么是cgi/fastcgi/php-fpm
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-25T16:10:46+08:00" content="2013-07-25">
-              2013-07-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/07/25/什么是cgi-fastcgi-php-fpm/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/07/25/什么是cgi-fastcgi-php-fpm/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="什么是cgi"><a href="#什么是cgi" class="headerlink" title="什么是cgi"></a>什么是cgi</h1><p>php 程序可以使用多种模式运行，分别为CLI SAPI,CGI SAPI。 咱们常使用CGI SAPI运行程序</p>
-<blockquote>
-<p>公共网关接口CGI(Common GatewayInterface) 是WWW技术中最重要的技术之一，有着不可替代的重要地位。CGI是外部应用程序（CGI程序）与Web服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的规程。CGI规范允许Web服务器执行外部程序，并将它们的输出发送给Web浏览器，CGI将Web的一组简单的静态超媒体文档变成一个完整的新的交互式媒体。<br>Common Gateway Interface，简称CGI。在物理上是一段程序，运行在服务器上，提供同客户端HTML页面的接口。这样说大概还不好理解。那么我们看一个实际例子：现在的个人主页上大部分都有一个留言本。留言本的工作是这样的：先由用户在客户端输入一些信息，如名字之类的东西。接着用户按一下“留言”（到目前为止工作都在客户端），浏览器把这些信息传送到服务器的CGI目录下特定的cgi程序中，于是cgi程序在服务器上按照预定的方法进行处理。在本例中就是把用户提交的信息存入指定的文件中。然后cgi程序给客户端发送一个信息，表示请求的任务已经结束。此时用户在浏览器里将看到“留言结束”的字样。整个过程结束。<br><strong> 以上内容来自百度百科 </strong></p>
-</blockquote>
-<p>个人理解：cgi sapi就是一组标准接口，各种语言如果想和web服务器进行通信，就需要实现这一系列的接口。相当于代理器</p>
-<p><strong>cgi sapi工作流程</strong></p>
-<ol>
-<li>用户通过浏览器发送请求到web服务器</li>
-<li>web服务器接收到请求后，转交给不同程序实现的cgi程序进行处理(例如：php-cgi)</li>
-<li>cgi处理数据完成后，再转交给web服务器，并终止程序</li>
-<li>web服务器将信息反馈给用户</li>
-</ol>
-<h1 id="什么是fastcgi"><a href="#什么是fastcgi" class="headerlink" title="什么是fastcgi"></a>什么是fastcgi</h1><p>　　fastcgi是语言无关的、可伸缩架构的cgi开放扩展，其主要行为是将cgi解释器进程保持在内存中并因此获得较高的性能。众所周知，cgi解释器的反复加载是cgi性能低下的主要原因，如果cgi解释器保持在内存中并接受fastcgi进程管理器调度，则可以提供良好的性能、伸缩性、fail- over特性等等。<br>　　<br>　　fastcgi的官方站点在<a href="http://www.fastcgi.com" target="_blank" rel="external">http://www.fastcgi.com</a><br>　　<br>　　fastcgi的工作原理是：<br>　　<br>　　1、web server启动时载入fastcgi进程管理器（IIS ISAPI或Apache Module）;<br>　　<br>　　2、fastcgi进程管理器自身初始化，启动多个cgi解释器进程 (在任务管理器中可见多个php-cgi.exe)并等待来自Web Server的连接。<br>　　<br>　　3、当客户端请求到达Web Server时，fastcgi进程管理器选择并连接到一个cgi解释器。Web server将cgi环境变量和标准输入发送到fastcgi子进程php-cgi.exe。<br>　　<br>　　4、fastcgi子进程完成处理后将标准输出和错误信息从同一连接返回Web Server。当fastcgi子进程关闭连接时，请求便告处理完成。fastcgi子进程接着等待并处理来自fastcgi进程管理器（运行在 WebServer中）的下一个连接。 在正常的cgi模式中，php-cgi.exe在此便退出了。<br>　　<br>　　在上述情况中，你可以想象 cgi通常有多慢。每一个Web请求PHP都必须重新解析php.ini、重新载入全部dll扩展并重初始化全部数据结构。使用fastcgi，所有这些都只在进程启动时发生一次。一个额外的好处是，持续数据库连接(Persistent database connection)可以工作。</p>
-<h1 id="什么是php-fpm"><a href="#什么是php-fpm" class="headerlink" title="什么是php-fpm"></a>什么是php-fpm</h1><p>　　php-fpm是一个PHP fastcgi管理器，是只用于PHP的。php5.3以后php将自带php-fpm,不用独立安装。</p>
-<h1 id="cgi、fastcgi、php-fpm之间的关系"><a href="#cgi、fastcgi、php-fpm之间的关系" class="headerlink" title="cgi、fastcgi、php-fpm之间的关系"></a>cgi、fastcgi、php-fpm之间的关系</h1><p>　　fastcgi 是 cgi的升级版。php-fpm是fastcgi的管理器</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/07/20/shell编辑基础/" itemprop="url">
-                  shell编辑基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-20T12:08:05+08:00" content="2013-07-20">
-              2013-07-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/07/20/shell编辑基础/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/07/20/shell编辑基础/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>shell 编程中使用到得if语句内判断参数<br>　　–b 当file存在并且是块文件时返回真</p>
-<p>　　-c 当file存在并且是字符文件时返回真</p>
-<p>　　-d 当pathname存在并且是一个目录时返回真</p>
-<p>　　-e 当pathname指定的文件或目录存在时返回真</p>
-<p>　　-f 当file存在并且是正规文件时返回真</p>
-<p>　　-g 当由pathname指定的文件或目录存在并且设置了SGID位时返回为真</p>
-<p>　　-h 当file存在并且是符号链接文件时返回真，该选项在一些老系统上无效</p>
-<p>　　-k 当由pathname指定的文件或目录存在并且设置了“粘滞”位时返回真</p>
-<p>　　-p 当file存在并且是命令管道时返回为真</p>
-<p>　　-r 当由pathname指定的文件或目录存在并且可读时返回为真</p>
-<p>　　-s 当file存在文件大小大于0时返回真</p>
-<p>　　-u 当由pathname指定的文件或目录存在并且设置了SUID位时返回真</p>
-<p>　　-w 当由pathname指定的文件或目录存在并且可执行时返回真。一个目录为了它的内容被访问必然是可执行的。</p>
-<p>　　-o 当由pathname指定的文件或目录存在并且被子当前进程的有效用户ID所指定的用户拥有时返回真。</p>
-<p>　　UNIX Shell 里面比较字符写法：</p>
-<p>　　-eq   等于</p>
-<p>　　-ne    不等于</p>
-<p>　　-gt    大于</p>
-<p>　　-lt    小于</p>
-<p>　　-le    小于等于</p>
-<p>　　-ge   大于等于</p>
-<p>　　-z    空串</p>
-<p>　　=    两个字符相等</p>
-<p>　　!=    两个字符不等</p>
-<p>　　-n    非空串</p>
-<p>　　————————————————————————-</p>
-<p>　　更为详细的说明：</p>
-<p>　　运算符                     描述                          示例</p>
-<p>　　文件比较运算符</p>
-<p>　　-e filename     如果 filename 存在，则为真            [ -e /var/log/syslog ]</p>
-<p>　　-d filename     如果 filename 为目录，则为真          [ -d /tmp/mydir ]</p>
-<p>　　-f filename     如果 filename 为常规文件，则为真      [ -f /usr/bin/grep ]</p>
-<p>　　-L filename     如果 filename 为符号链接，则为真      [ -L /usr/bin/grep ]</p>
-<p>　　-r filename     如果 filename 可读，则为真            [ -r /var/log/syslog ]</p>
-<p>　　-w filename     如果 filename 可写，则为真            [ -w /var/mytmp.txt ]</p>
-<p>　　-x filename     如果 filename 可执行，则为真          [ -L /usr/bin/grep ]</p>
-<p>　　filename1 -nt filename2 如果 filename1 比 filename2 新，则为真 [ /tmp/install/etc/services -nt /etc/services ]</p>
-<p>　　filename1 -ot filename2   如果 filename1 比 filename2 旧，则为真  [ /boot/bzImage -ot arch/i386/boot/bzImage ]</p>
-<p>　　字符串比较运算符 （请注意引号的使用，这是防止空格扰乱代码的好方法）-z string               如果 string 长度为零，则为真               [ -z $myvar ]</p>
-<p>　　-n string                      如果 string 长度非零，则为真        [ -n $myvar ]</p>
-<p>　　string1 = string2         如果 string1 与 string2 相同，则为真     [ $myvar = one two three ]</p>
-<p>　　string1 != string2        如果 string1 与 string2 不同，则为真     [ $myvar != one two three ]</p>
-<p>　　算术比较运算符</p>
-<p>　　num1 -eq num2              等于         [ 3 -eq $mynum ]</p>
-<p>　　num1 -ne num2              不等于       [ 3 -ne $mynum ]</p>
-<p>　　num1 -lt num2               小于        [ 3 -lt $mynum ]</p>
-<p>　　num1 -le num2            小于或等于     [ 3 -le $mynum ]</p>
-<p>　　num1 -gt num2             大于          [ 3 -gt $mynum ]</p>
-<p>　　num1 -ge num2             大于或等于    [ 3 -ge $mynum ]</p>
-<p>　　脚本示例：</p>
-<p>　　#!/bin/bash</p>
-<p>　　# This script prints a message about your weight if you give it your</p>
-<p>　　# weight in kilos and hight in centimeters.</p>
-<p>　　if [ ! $# == 2 ]; then</p>
-<p>　　echo “Usage: $0 weight_in_kilos length_in_centimeters”</p>
-<p>　　exit</p>
-<p>　　fi</p>
-<p>　　weight=”$1”</p>
-<p>　　height=”$2”</p>
-<p>　　idealweight=$[$height - 110]</p>
-<p>　　if [ $weight -le $idealweight ] ; then</p>
-<p>　　echo “You should eat a bit more fat.”</p>
-<p>　　else</p>
-<p>　　echo “You should eat a bit more fruit.”</p>
-<p>　　fi</p>
-<p>　　# weight.sh 70 150</p>
-<p>　　You should eat a bit more fruit.</p>
-<p>　　# weight.sh 70 150 33</p>
-<p>　　Usage: ./weight.sh weight_in_kilos length_in_centimeters</p>
-<p>　　位置参数 $1， $2,…, $N，$#代表了命令行的参数数量， $0代表了脚本的名字，</p>
-<p>　　第一个参数代表$1，第二个参数代表$2，以此类推，参数数量的总数存在$#中，上面的例子显示了怎么改变脚本，如果参数少于或者多余2个来打印出一条消息。</p>
-<p>　　执行，并查看情况。</p>
-<p>　　# bash -x tijian.sh 60 170</p>
-<p>　　+ weight=60</p>
-<p>　　+ height=170</p>
-<p>　　+ idealweight=60</p>
-<p>　　+ ‘[‘ 60 -le 60 ‘]’</p>
-<p>　　+ echo ‘You should eat a bit more fat.’</p>
-<p>　　You should eat a bit more fat.</p>
-<p>　　其中-x用来检查脚本的执行情况。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/07/10/短链接生成原理/" itemprop="url">
-                  短链接生成原理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-10T10:03:11+08:00" content="2013-07-10">
-              2013-07-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/07/10/短链接生成原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/07/10/短链接生成原理/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="短链接生成原理"><a href="#短链接生成原理" class="headerlink" title="短链接生成原理"></a>短链接生成原理</h2><p>短链接：将长链接通过算法进行转换为简短URL<br>生成短链接为了防止重复使用十进制数字进行判断最为方便，但是十进制数字进行保存的话也是非常惊人的量，后面随着数据量的增长会越来越大，越来越长。<br>因此解决这个问题的最好办法就是进行多进制转换。例如62位(0-9a-zA-Z)，进行多进制转换后，生成串会惊人的减少。<br>下面提供一个php的十进制进行62位的转换函数：</p>
-<pre class="brush: php; gutter: true">
-function to62($num) {
-    $to = 62;
-    $dict = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $ret = '';
-    do {
-        $ret = $dict[bcmod($num, $to)] . $ret;
-        $num = bcdiv($num, $to);
-    } while ($num > 0);
-    return $ret;
-}
-echo to62(100000); // 输出:q0U
-</pre>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/07/08/ubuntu问题修复/" itemprop="url">
-                  ubuntu问题修复
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-08T19:00:22+08:00" content="2013-07-08">
-              2013-07-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/07/08/ubuntu问题修复/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/07/08/ubuntu问题修复/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-unexpected-inconsistency-run-fsck-manually"><a href="#1-unexpected-inconsistency-run-fsck-manually" class="headerlink" title="1. unexpected inconsistency run fsck manually"></a>1. unexpected inconsistency run fsck manually</h3><h5 id="修复方法："><a href="#修复方法：" class="headerlink" title="修复方法："></a>修复方法：</h5><pre><code>- 启动live模式
-- 进入终端
-- 运行：sudo fsck -y -t ext3 /dev/sda8
-- 退出终端，重启机器
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/07/03/vim-vimrepress/" itemprop="url">
-                  vim-vimrepress
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-07-03T18:44:12+08:00" content="2013-07-03">
-              2013-07-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/07/03/vim-vimrepress/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/07/03/vim-vimrepress/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.安装vimrepress插件<br>2.配置</p>
-<pre>
-let VIMPRESS = [{'username':'admin',
-                \'blog_url':'http://www.codejm.com/'
-                \}]
-</pre>
-
-<p>3.我常用的命令<br>BlogList 文章列表 参数: post 10 默认值：30<br>BlogNew  写新文章<br>BlogSave 保存 两个参数：publish draft 默认值：draft<br>BlogOpen 打开文章 参数：帖子id<br>BlogPreview 预览文件<br>BlogUpload <file> 上传图片等文件<br>BlogCode <code type=""> 插入pre代码块</code></file></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/06/24/vim/" itemprop="url">
-                  vim
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-06-24T18:38:52+08:00" content="2013-06-24">
-              2013-06-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
-                    <span itemprop="name">vim</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/06/24/vim/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/06/24/vim/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="CODEJM-vim党党员"><a href="#CODEJM-vim党党员" class="headerlink" title="CODEJM vim党党员"></a>CODEJM vim党党员</h2><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><strong> vim安装 </strong><br><code>git clone https://github.com/codejm/Vim.git
-python 32位 : http://www.python.org/ftp/python/2.7.5/python-2.7.5.msi
-makedown-python : https://pypi.python.org/packages/source/M/Markdown/Markdown-2.3.1.zip#md5=39460227bfe10a8e8b88c90505226b90</code><br><strong> Ack搜索 </strong><br>perl 环境<br>vim/grep/ack.bat 环境变量</p>
-<p><strong> font字体 </strong><br>安装Menlo字体</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><strong> 快捷键 </strong></p>
-<ol>
-<li>hjkl 方向键</li>
-<li>gvimrc ,ee</li>
-<li>vimwiki ,ww</li>
-<li>快速定位 ,w</li>
-<li>代码补全 Ctrl+n</li>
-<li>代码格式化 ==</li>
-<li>最近使用文件 Ctrl+k</li>
-<li>项目文件 Ctrl+p</li>
-<li>目录浏览 Ctrl+d</li>
-<li>单词定位手册 Shift+k</li>
-<li>新文件 Ctrl+c</li>
-<li>Tab切换 Ctrl+n Ctrl+m</li>
-<li>撤销 u</li>
-<li>恢复撤销 Ctrl+r</li>
-<li>退出 Shift+q</li>
-</ol>
-<h1 id="关于作者"><a href="#关于作者" class="headerlink" title="关于作者"></a>关于作者</h1><p>主页：<a href="http://www.codejm.com">http://www.codejm.com</a><br>微博: <a href="http://weibo.com/codejm" target="_blank" rel="external">http://weibo.com/codejm</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1655,7 +1643,7 @@ makedown-python : https://pypi.python.org/packages/source/M/Markdown/Markdown-2.
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1663,7 +1651,7 @@ makedown-python : https://pypi.python.org/packages/source/M/Markdown/Markdown-2.
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1672,7 +1660,7 @@ makedown-python : https://pypi.python.org/packages/source/M/Markdown/Markdown-2.
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
