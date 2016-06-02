@@ -1,0 +1,722 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="http://fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="shell," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="shell 编程中使用到得if语句内判断参数　　–b 当file存在并且是块文件时返回真
+　　-c 当file存在并且是字符文件时返回真
+　　-d 当pathname存在并且是一个目录时返回真
+　　-e 当pathname指定的文件或目录存在时返回真
+　　-f 当file存在并且是正规文件时返回真
+　　-g 当由pathname指定的文件或目录存在并且设置了SGID位时返回为真
+　　-h 当fil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell编辑基础">
+<meta property="og:url" content="http://www.codejm.com/2013/07/20/shell编辑基础/index.html">
+<meta property="og:site_name" content="Codejm 一个php程序员">
+<meta property="og:description" content="shell 编程中使用到得if语句内判断参数　　–b 当file存在并且是块文件时返回真
+　　-c 当file存在并且是字符文件时返回真
+　　-d 当pathname存在并且是一个目录时返回真
+　　-e 当pathname指定的文件或目录存在时返回真
+　　-f 当file存在并且是正规文件时返回真
+　　-g 当由pathname指定的文件或目录存在并且设置了SGID位时返回为真
+　　-h 当fil">
+<meta property="og:updated_time" content="2016-06-02T11:09:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell编辑基础">
+<meta name="twitter:description" content="shell 编程中使用到得if语句内判断参数　　–b 当file存在并且是块文件时返回真
+　　-c 当file存在并且是字符文件时返回真
+　　-d 当pathname存在并且是一个目录时返回真
+　　-e 当pathname指定的文件或目录存在时返回真
+　　-f 当file存在并且是正规文件时返回真
+　　-g 当由pathname指定的文件或目录存在并且设置了SGID位时返回为真
+　　-h 当fil">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> shell编辑基础 | Codejm 一个php程序员 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Codejm 一个php程序员</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                shell编辑基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-07-20T12:08:05+08:00" content="2013-07-20">
+              2013-07-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/07/20/shell编辑基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/07/20/shell编辑基础/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>shell 编程中使用到得if语句内判断参数<br>　　–b 当file存在并且是块文件时返回真</p>
+<p>　　-c 当file存在并且是字符文件时返回真</p>
+<p>　　-d 当pathname存在并且是一个目录时返回真</p>
+<p>　　-e 当pathname指定的文件或目录存在时返回真</p>
+<p>　　-f 当file存在并且是正规文件时返回真</p>
+<p>　　-g 当由pathname指定的文件或目录存在并且设置了SGID位时返回为真</p>
+<p>　　-h 当file存在并且是符号链接文件时返回真，该选项在一些老系统上无效</p>
+<p>　　-k 当由pathname指定的文件或目录存在并且设置了“粘滞”位时返回真</p>
+<p>　　-p 当file存在并且是命令管道时返回为真</p>
+<p>　　-r 当由pathname指定的文件或目录存在并且可读时返回为真</p>
+<p>　　-s 当file存在文件大小大于0时返回真</p>
+<p>　　-u 当由pathname指定的文件或目录存在并且设置了SUID位时返回真</p>
+<p>　　-w 当由pathname指定的文件或目录存在并且可执行时返回真。一个目录为了它的内容被访问必然是可执行的。</p>
+<p>　　-o 当由pathname指定的文件或目录存在并且被子当前进程的有效用户ID所指定的用户拥有时返回真。</p>
+<p>　　UNIX Shell 里面比较字符写法：</p>
+<p>　　-eq   等于</p>
+<p>　　-ne    不等于</p>
+<p>　　-gt    大于</p>
+<p>　　-lt    小于</p>
+<p>　　-le    小于等于</p>
+<p>　　-ge   大于等于</p>
+<p>　　-z    空串</p>
+<p>　　=    两个字符相等</p>
+<p>　　!=    两个字符不等</p>
+<p>　　-n    非空串</p>
+<p>　　————————————————————————-</p>
+<p>　　更为详细的说明：</p>
+<p>　　运算符                     描述                          示例</p>
+<p>　　文件比较运算符</p>
+<p>　　-e filename     如果 filename 存在，则为真            [ -e /var/log/syslog ]</p>
+<p>　　-d filename     如果 filename 为目录，则为真          [ -d /tmp/mydir ]</p>
+<p>　　-f filename     如果 filename 为常规文件，则为真      [ -f /usr/bin/grep ]</p>
+<p>　　-L filename     如果 filename 为符号链接，则为真      [ -L /usr/bin/grep ]</p>
+<p>　　-r filename     如果 filename 可读，则为真            [ -r /var/log/syslog ]</p>
+<p>　　-w filename     如果 filename 可写，则为真            [ -w /var/mytmp.txt ]</p>
+<p>　　-x filename     如果 filename 可执行，则为真          [ -L /usr/bin/grep ]</p>
+<p>　　filename1 -nt filename2 如果 filename1 比 filename2 新，则为真 [ /tmp/install/etc/services -nt /etc/services ]</p>
+<p>　　filename1 -ot filename2   如果 filename1 比 filename2 旧，则为真  [ /boot/bzImage -ot arch/i386/boot/bzImage ]</p>
+<p>　　字符串比较运算符 （请注意引号的使用，这是防止空格扰乱代码的好方法）-z string               如果 string 长度为零，则为真               [ -z $myvar ]</p>
+<p>　　-n string                      如果 string 长度非零，则为真        [ -n $myvar ]</p>
+<p>　　string1 = string2         如果 string1 与 string2 相同，则为真     [ $myvar = one two three ]</p>
+<p>　　string1 != string2        如果 string1 与 string2 不同，则为真     [ $myvar != one two three ]</p>
+<p>　　算术比较运算符</p>
+<p>　　num1 -eq num2              等于         [ 3 -eq $mynum ]</p>
+<p>　　num1 -ne num2              不等于       [ 3 -ne $mynum ]</p>
+<p>　　num1 -lt num2               小于        [ 3 -lt $mynum ]</p>
+<p>　　num1 -le num2            小于或等于     [ 3 -le $mynum ]</p>
+<p>　　num1 -gt num2             大于          [ 3 -gt $mynum ]</p>
+<p>　　num1 -ge num2             大于或等于    [ 3 -ge $mynum ]</p>
+<p>　　脚本示例：</p>
+<p>　　#!/bin/bash</p>
+<p>　　# This script prints a message about your weight if you give it your</p>
+<p>　　# weight in kilos and hight in centimeters.</p>
+<p>　　if [ ! $# == 2 ]; then</p>
+<p>　　echo “Usage: $0 weight_in_kilos length_in_centimeters”</p>
+<p>　　exit</p>
+<p>　　fi</p>
+<p>　　weight=”$1”</p>
+<p>　　height=”$2”</p>
+<p>　　idealweight=$[$height - 110]</p>
+<p>　　if [ $weight -le $idealweight ] ; then</p>
+<p>　　echo “You should eat a bit more fat.”</p>
+<p>　　else</p>
+<p>　　echo “You should eat a bit more fruit.”</p>
+<p>　　fi</p>
+<p>　　# weight.sh 70 150</p>
+<p>　　You should eat a bit more fruit.</p>
+<p>　　# weight.sh 70 150 33</p>
+<p>　　Usage: ./weight.sh weight_in_kilos length_in_centimeters</p>
+<p>　　位置参数 $1， $2,…, $N，$#代表了命令行的参数数量， $0代表了脚本的名字，</p>
+<p>　　第一个参数代表$1，第二个参数代表$2，以此类推，参数数量的总数存在$#中，上面的例子显示了怎么改变脚本，如果参数少于或者多余2个来打印出一条消息。</p>
+<p>　　执行，并查看情况。</p>
+<p>　　# bash -x tijian.sh 60 170</p>
+<p>　　+ weight=60</p>
+<p>　　+ height=170</p>
+<p>　　+ idealweight=60</p>
+<p>　　+ ‘[‘ 60 -le 60 ‘]’</p>
+<p>　　+ echo ‘You should eat a bit more fat.’</p>
+<p>　　You should eat a bit more fat.</p>
+<p>　　其中-x用来检查脚本的执行情况。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag">#shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/07/10/短链接生成原理/" rel="next" title="短链接生成原理">
+                <i class="fa fa-chevron-left"></i> 短链接生成原理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/07/25/什么是cgi-fastcgi-php-fpm/" rel="prev" title="什么是cgi/fastcgi/php-fpm">
+                什么是cgi/fastcgi/php-fpm <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013/07/20/shell编辑基础/"
+           data-title="shell编辑基础" data-url="http://www.codejm.com/2013/07/20/shell编辑基础/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Codejm" />
+          <p class="site-author-name" itemprop="name">Codejm</p>
+          <p class="site-description motion-element" itemprop="description">专注做好一件事</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Codejm</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codejm-comment"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

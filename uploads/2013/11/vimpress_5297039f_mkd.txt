@@ -1,0 +1,67 @@
+php 转换字符串有多种方式，哪种效率最高呢。最了一下测试结果如下：
+
+strval执行时间: 14.7 毫秒
+settype执行时间: 8.9 毫秒
+string执行时间: 10.3 毫秒
+
+<pre class="brush: php; gutter: true">
+<?php
+/**
+ *      [CodeJm!] Author CodeJm[codejm@163.com].
+ *
+ *
+ *      $Id: aaa.php 2013-11-28 16:20:07 codejm $
+ */
+class runtime
+{
+    var $StartTime = 0;
+    var $StopTime = 0;
+    function get_microtime()
+    {
+        list($usec, $sec) = explode(' ', microtime());
+        return ((float)$usec + (float)$sec);
+    }
+    function start()
+    {
+        $this->StartTime = $this->get_microtime();
+    }
+    function stop()
+    {
+        $this->StopTime = $this->get_microtime();
+    }
+    function spent()
+    {
+        return round(($this->StopTime - $this->StartTime) * 1000, 1);
+    }
+}
+//例子
+$runtime= new runtime;
+$runtime->start();
+// code S
+$data = 2.1;
+for($i=0; $i<10000; $i++) {
+    $datastr = strval($data);
+}
+// code E
+$runtime->stop();
+echo "strval执行时间: ".$runtime->spent()." 毫秒<br />";
+$runtime->start();
+// code S
+$data = 2.1;
+for($i=0; $i<10000; $i++) {
+    $datastr = settype($data, "string");
+}
+// code E
+$runtime->stop();
+echo "settype执行时间: ".$runtime->spent()." 毫秒<br />";
+$runtime->start();
+// code S
+$data = 2.1;
+for($i=0; $i<10000; $i++) {
+    $datastr = (string)$data;
+}
+// code E
+$runtime->stop();
+echo "string执行时间: ".$runtime->spent()." 毫秒<br />";
+?>
+</pre>

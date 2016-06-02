@@ -1,0 +1,24 @@
+The below should add the repository on 12.04 Precise (the repository doesn't contain a Source directory, which the add-apt-repository command assumes it will, so I have used a slightly different method).
+
+sudo sh -c 'echo "# WANdisco Open Source Repo" >> /etc/apt/sources.list.d/WANdisco.list'
+sudo sh -c 'echo "deb http://opensource.wandisco.com/ubuntu precise svn18" >> /etc/apt/sources.list.d/WANdisco.list'
+wget -q http://opensource.wandisco.com/wandisco-debian.gpg -O- | sudo apt-key add -
+sudo apt-get update
+To confirm that the new subversion package has been detected, run:
+
+apt-cache show subversion | grep '^Version:'
+If the 1.8 package is listed, you should then be able to install as normal:
+
+sudo apt-get install subversion
+
+==================================================================================================
+client
+install software rapidsvn
+运行rapidsvn出错
+run rapidsvn error:
+
+正确修正方案:
+$ cd /usr/lib
+$ sudo ln -s libsvn_subr-1.so.0 libsvn_subr-1.so.1
+$ sudo ln -s libsvn_client-1.so.0 libsvn_client-1.so.1
+$ sudo ln -s libsvn_wc-1.so.0 libsvn_wc-1.so.1

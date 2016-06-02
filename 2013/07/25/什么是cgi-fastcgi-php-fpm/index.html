@@ -1,0 +1,649 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="http://fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="cgi,fastcgi,php-fpm," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="什么是cgiphp 程序可以使用多种模式运行，分别为CLI SAPI,CGI SAPI。 咱们常使用CGI SAPI运行程序
+
+公共网关接口CGI(Common GatewayInterface) 是WWW技术中最重要的技术之一，有着不可替代的重要地位。CGI是外部应用程序（CGI程序）与Web服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的规程。CGI规范允许Web服务器执行外部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是cgi/fastcgi/php-fpm">
+<meta property="og:url" content="http://www.codejm.com/2013/07/25/什么是cgi-fastcgi-php-fpm/index.html">
+<meta property="og:site_name" content="Codejm 一个php程序员">
+<meta property="og:description" content="什么是cgiphp 程序可以使用多种模式运行，分别为CLI SAPI,CGI SAPI。 咱们常使用CGI SAPI运行程序
+
+公共网关接口CGI(Common GatewayInterface) 是WWW技术中最重要的技术之一，有着不可替代的重要地位。CGI是外部应用程序（CGI程序）与Web服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的规程。CGI规范允许Web服务器执行外部">
+<meta property="og:updated_time" content="2016-06-02T11:12:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么是cgi/fastcgi/php-fpm">
+<meta name="twitter:description" content="什么是cgiphp 程序可以使用多种模式运行，分别为CLI SAPI,CGI SAPI。 咱们常使用CGI SAPI运行程序
+
+公共网关接口CGI(Common GatewayInterface) 是WWW技术中最重要的技术之一，有着不可替代的重要地位。CGI是外部应用程序（CGI程序）与Web服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的规程。CGI规范允许Web服务器执行外部">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 什么是cgi/fastcgi/php-fpm | Codejm 一个php程序员 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Codejm 一个php程序员</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                什么是cgi/fastcgi/php-fpm
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-07-25T16:10:46+08:00" content="2013-07-25">
+              2013-07-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/07/25/什么是cgi-fastcgi-php-fpm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/07/25/什么是cgi-fastcgi-php-fpm/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是cgi"><a href="#什么是cgi" class="headerlink" title="什么是cgi"></a>什么是cgi</h1><p>php 程序可以使用多种模式运行，分别为CLI SAPI,CGI SAPI。 咱们常使用CGI SAPI运行程序</p>
+<blockquote>
+<p>公共网关接口CGI(Common GatewayInterface) 是WWW技术中最重要的技术之一，有着不可替代的重要地位。CGI是外部应用程序（CGI程序）与Web服务器之间的接口标准，是在CGI程序和Web服务器之间传递信息的规程。CGI规范允许Web服务器执行外部程序，并将它们的输出发送给Web浏览器，CGI将Web的一组简单的静态超媒体文档变成一个完整的新的交互式媒体。<br>Common Gateway Interface，简称CGI。在物理上是一段程序，运行在服务器上，提供同客户端HTML页面的接口。这样说大概还不好理解。那么我们看一个实际例子：现在的个人主页上大部分都有一个留言本。留言本的工作是这样的：先由用户在客户端输入一些信息，如名字之类的东西。接着用户按一下“留言”（到目前为止工作都在客户端），浏览器把这些信息传送到服务器的CGI目录下特定的cgi程序中，于是cgi程序在服务器上按照预定的方法进行处理。在本例中就是把用户提交的信息存入指定的文件中。然后cgi程序给客户端发送一个信息，表示请求的任务已经结束。此时用户在浏览器里将看到“留言结束”的字样。整个过程结束。<br><strong> 以上内容来自百度百科 </strong></p>
+</blockquote>
+<p>个人理解：cgi sapi就是一组标准接口，各种语言如果想和web服务器进行通信，就需要实现这一系列的接口。相当于代理器</p>
+<p><strong>cgi sapi工作流程</strong></p>
+<ol>
+<li>用户通过浏览器发送请求到web服务器</li>
+<li>web服务器接收到请求后，转交给不同程序实现的cgi程序进行处理(例如：php-cgi)</li>
+<li>cgi处理数据完成后，再转交给web服务器，并终止程序</li>
+<li>web服务器将信息反馈给用户</li>
+</ol>
+<h1 id="什么是fastcgi"><a href="#什么是fastcgi" class="headerlink" title="什么是fastcgi"></a>什么是fastcgi</h1><p>　　fastcgi是语言无关的、可伸缩架构的cgi开放扩展，其主要行为是将cgi解释器进程保持在内存中并因此获得较高的性能。众所周知，cgi解释器的反复加载是cgi性能低下的主要原因，如果cgi解释器保持在内存中并接受fastcgi进程管理器调度，则可以提供良好的性能、伸缩性、fail- over特性等等。<br>　　<br>　　fastcgi的官方站点在<a href="http://www.fastcgi.com" target="_blank" rel="external">http://www.fastcgi.com</a><br>　　<br>　　fastcgi的工作原理是：<br>　　<br>　　1、web server启动时载入fastcgi进程管理器（IIS ISAPI或Apache Module）;<br>　　<br>　　2、fastcgi进程管理器自身初始化，启动多个cgi解释器进程 (在任务管理器中可见多个php-cgi.exe)并等待来自Web Server的连接。<br>　　<br>　　3、当客户端请求到达Web Server时，fastcgi进程管理器选择并连接到一个cgi解释器。Web server将cgi环境变量和标准输入发送到fastcgi子进程php-cgi.exe。<br>　　<br>　　4、fastcgi子进程完成处理后将标准输出和错误信息从同一连接返回Web Server。当fastcgi子进程关闭连接时，请求便告处理完成。fastcgi子进程接着等待并处理来自fastcgi进程管理器（运行在 WebServer中）的下一个连接。 在正常的cgi模式中，php-cgi.exe在此便退出了。<br>　　<br>　　在上述情况中，你可以想象 cgi通常有多慢。每一个Web请求PHP都必须重新解析php.ini、重新载入全部dll扩展并重初始化全部数据结构。使用fastcgi，所有这些都只在进程启动时发生一次。一个额外的好处是，持续数据库连接(Persistent database connection)可以工作。</p>
+<h1 id="什么是php-fpm"><a href="#什么是php-fpm" class="headerlink" title="什么是php-fpm"></a>什么是php-fpm</h1><p>　　php-fpm是一个PHP fastcgi管理器，是只用于PHP的。php5.3以后php将自带php-fpm,不用独立安装。</p>
+<h1 id="cgi、fastcgi、php-fpm之间的关系"><a href="#cgi、fastcgi、php-fpm之间的关系" class="headerlink" title="cgi、fastcgi、php-fpm之间的关系"></a>cgi、fastcgi、php-fpm之间的关系</h1><p>　　fastcgi 是 cgi的升级版。php-fpm是fastcgi的管理器</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cgi/" rel="tag">#cgi</a>
+          
+            <a href="/tags/fastcgi/" rel="tag">#fastcgi</a>
+          
+            <a href="/tags/php-fpm/" rel="tag">#php-fpm</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/07/20/shell编辑基础/" rel="next" title="shell编辑基础">
+                <i class="fa fa-chevron-left"></i> shell编辑基础
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/07/30/nohup命令说明/" rel="prev" title="nohup命令说明">
+                nohup命令说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013/07/25/什么是cgi-fastcgi-php-fpm/"
+           data-title="什么是cgi/fastcgi/php-fpm" data-url="http://www.codejm.com/2013/07/25/什么是cgi-fastcgi-php-fpm/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Codejm" />
+          <p class="site-author-name" itemprop="name">Codejm</p>
+          <p class="site-description motion-element" itemprop="description">专注做好一件事</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是cgi"><span class="nav-number">1.</span> <span class="nav-text">什么是cgi</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是fastcgi"><span class="nav-number">2.</span> <span class="nav-text">什么是fastcgi</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是php-fpm"><span class="nav-number">3.</span> <span class="nav-text">什么是php-fpm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cgi、fastcgi、php-fpm之间的关系"><span class="nav-number">4.</span> <span class="nav-text">cgi、fastcgi、php-fpm之间的关系</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Codejm</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codejm-comment"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

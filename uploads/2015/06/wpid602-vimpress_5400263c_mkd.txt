@@ -1,0 +1,41 @@
+
+## yaf安装
+
+<pre class="brush: shell; gutter: true">
+git clone https://github.com/laruence/php-yaf.git yaf
+cd yaf
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+sudo make
+sudo make install
+</pre>
+
+## msgpack安装, yar序列化使用msgpack(当然也可以选择其他序列化方式json，默认为php)
+
+<pre class="brush: shell; gutter: true">
+git clone https://github.com/msgpack/msgpack-php.git
+cd msgpack-php
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+sudo make
+sudo make install
+</pre>
+
+## yar安装
+
+<pre class="brush: shell; gutter: true">
+git clone https://github.com/laruence/yar.git
+cd yar
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config --enable-msgpack
+sudo make
+sudo make install
+</pre>
+
+## 修改php.ini配置
+extension=yaf.so
+extension=msgpack.so
+extension=yar.so
+
+[yar]
+yar.packager="msgpack"

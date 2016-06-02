@@ -1,0 +1,16 @@
+
+sudo apt-get remove vim
+
+sudo add-apt-repository ppa:fcwu-tw/ppa
+sudo apt-get update
+sudo apt-get install vim
+sudo apt-get install vim-gnome
+
+
+修改gvim默认以--remote-tab打开
+sudo vim /usr/share/applications/gvim.desktop
+Exec=gvim -f --remote-tab %F
+
+配置：
+https://github.com/codejm/Vim
+http://www.codejm.com/archives/229

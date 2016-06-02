@@ -1,0 +1,9 @@
+
+把用户目录下的下载、图片、视频、文档修改成对应的英文
+打开终端：
+<pre class="brush: shell; gutter: true">
+export LANG=en_US
+xdg-user-dirs-gtk-update
+</pre>
+弹出的对话框选择确定修改,重启系统就会变成修改后的效果了。
+

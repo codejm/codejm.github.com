@@ -1,0 +1,14 @@
+## 原因
+编译安装vim7.4之后,打开文件选择打开方式找不到gvim,在/usr/share/applications目录下添加gvim.desktop无效后只能另谋出路了。
+
+## 修改gedit为gvim
+<pre class="brush: shell; gutter: true">
+sudo vim /usr/share/applications/gedit.desktop
+// 修改
+Name=gvim
+// 也可以直接写gvim %U --remote-tab-silent 为在tab打开新文件
+Exec=gvim --remote-tab-silent %U
+</pre>
+
+## 背景
+ubunut 13.04

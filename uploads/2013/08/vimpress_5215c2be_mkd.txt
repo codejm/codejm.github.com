@@ -1,0 +1,81 @@
+背景就不描述了(还是得说一句，我是ubuntu 12.04)，直接上步骤：
+## 一、下载并安装jdk
+
+<pre class="brush: shell; gutter: true">
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz" 
+cd ~
+mkdir local
+cd local/
+mkdir jvm
+sudo tar zxvf ./jdk-7u25-linux-x64.tar.gz  -C /home/codejm/local/jvm
+vim ~/.bashrc
+</pre>
+### .bashrc 文件(包括后续用到的配置)
+<pre class="brush: shell; gutter: true">
+export JAVA_HOME=/home/codejm/local/jvm/jdk1.7.0_25
+export JRE_HOME=${JAVA_HOME}/jre
+export NDK_ROOT=/home/codejm/local/android-ndk-r9
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+export PATH=/home/codejm/local/android-ndk-r9:$PATH
+</pre>
+source ~/.bashrc
+
+测试是否安装成功
+java -version
+
+## 二、下载并安装sdk(adt-bundle-linux-x86_64-20130729)
+解压到 ~/local/adt-bundle-linux-x86_64-20130729
+打开eclipse目录并运行eclipse
+
+Menu -> Window -> Android SDK Manager
+在打开的窗口中
+Menu -> Tools -> Options
+国内需翻墙 配置代理(这个... 我反正用goagent，其他的也可以，宗旨是能访问android下载sdk)
+勾选 Force https://... (这个应该可以不勾选，反正我勾选了)
+然后选择要现在的sdk版本，install packages即可
+
+这个时候就可以创建android程序测试了
+
+## 三、下载并安装ndk
+从http://androidappdocs.appspot.com/sdk/ndk/index.html下载最新版ndk 我下载的是r9
+解压缩到 local/android-ndk-r9
+配置.bashrc文件
+测试参考地址：
+http://blog.sina.com.cn/s/blog_3e4774e30100mjug.html
+
+特别注意 需要在项目路径jni执行ndk-build 生成相应的so文件刷新目录后运行项目即可
+
+## 四、下载并安装cocos2d-x
+下载cocos2d-x 到 ~/local/cocos2d-x-2.1.4/
+修改./create-android-project.sh NDK_ROOT_LOCAL和ANDROID_SDK_ROOT_LOCAL路径
+执行./create-android-project.sh
+根据提示创建项目名、包名、anroid版本要求选择 生成项目在根目录 打开根目录下proj.android, 执行./build_native.sh
+
+生成后 使用eclipse创建项目并指向proj.android
+把android版本改成2.3.3哦 不然代码会提示错误
+
+修改以下文件：
+jni/Android.mk
+添加最后一个include下面：
+$(call import-add-path, /home/codejm/local/cocos2d-x-2.1.4)\
+$(call import-add-path, /home/codejm/local/cocos2d-x-2.1.4/cocos2dx/platform/third_party/android/prebuilt)\ 
+
+jni/Application.mk (r9 bug)
+添加:
+APP_CPPFLAGS  += -Wno-error=format-security
+
+AndroidManifesst.xml
+<activity android:name=".项目名"
+修改为
+<activity android:name="包名.项目名"
+
+<uses-sdk android:minSdkVersion="8"/>
+改成
+<uses-sdk android:minSdkVersion="10"/>
+
+终端进入jni目录 运行：ndk-build 生成so文件
+刷新目录 运行程序
+
+完
+2013-8-22 15:49:58
