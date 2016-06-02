@@ -1,8 +1,0 @@
-
-### 小记：
-刚才碰到一个奇葩的问题，客户端给服务器端传递base64编码的字符串，字符串中包含“+”号，浏览器会把“+”号变成空格，base64解码就出错了 需要手动把空格replace成“+”
-
-<pre class="brush: php; gutter: true">
-  $encodedData = str_replace(' ', '+', $encodedData);
-  $decocedData = base64_decode($encodedData);
-</pre>

@@ -1,9 +1,0 @@
-
-pip site download MySQL-python package
-https://pypi.python.org/pypi/MySQL-python/1.2.5
-
-tar xfz MySQL-python-1.2.5.tar.gz
-cd MySQL-python-1.2.5
-# edit site.cfg:  set mysql_config = /usr/local/mysql/bin/mysql_config
-python setup.py build
-sudo python setup.py install # or su first

@@ -1,8 +1,0 @@
-
-## 如何使用vim替换多文件中存在的字符串呢？
-
-    1. 定位目录cd, 定位的要替换的目录
-    2. :args ./*.html 包含子目录使用 :args **/*.html
-    3. :argdo %s/old/new/ge | update
-
-    完成！！
