@@ -243,6 +243,134 @@
             
               
                 
+                <a class="post-title-link" href="/2013/12/04/xdebug2-2-3安装/" itemprop="url">
+                  xdebug2.2.3安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-12-04T10:55:04+08:00" content="2013-12-04">
+              2013-12-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/12/04/xdebug2-2-3安装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/04/xdebug2-2-3安装/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="下载xdebug-2-2-3"><a href="#下载xdebug-2-2-3" class="headerlink" title="下载xdebug 2.2.3"></a>下载xdebug 2.2.3</h2><pre class="brush: shell; gutter: true">
+wget http://www.xdebug.org/files/xdebug-2.2.3.tgz
+tar zxvf xdebug-2.2.3.tgz
+cd xdebug-2.2.3
+/usr/local/webserver/php/bin/phpize
+./configure --with-php-config=/usr/local/webserver/php/bin/php-configconfig
+make && make install
+vim php.ini
+修改:
+    display_errors = On
+    html_errors = On
+添加:
+    [zend]
+    zend_extension="/usr/local/webserver/php/lib/php/extensions/no-debug-non-zts-20090626/xdebug.so"
+    xdebug.default_enable = On
+    xdebug.show_exception_trace = On
+    xdebug.show_local_vars = 1
+    xdebug.max_nesting_level = 50
+    xdebug.var_display_max_depth = 6
+    xdebug.dump_once = On
+    xdebug.dump_globals = On
+    xdebug.dump_undefined = On
+    xdebug.dump.REQUEST = *
+    xdebug.cli_color = 2
+</pre>
+
+<p>保存并重新启动php<br>效果：</p>
+<p><a href="http://www.codejm.com/uploads/2013/12/20131204111118.jpg"><img title="20131204111118.jpg" alt="20131204111118.jpg" src="http://www.codejm.com/uploads/2013/12/20131204111118.jpg" class="aligncenter"></a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013/12/02/linux常用命令/" itemprop="url">
                   linux常用命令
                 </a>
@@ -1457,147 +1585,6 @@ export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH // 为编译器设定额
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/08/22/ndk开发配置/" itemprop="url">
-                  ndk开发配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-08-22T15:49:58+08:00" content="2013-08-22">
-              2013-08-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/08/22/ndk开发配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/08/22/ndk开发配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>背景就不描述了(还是得说一句，我是ubuntu 12.04)，直接上步骤：</p>
-<h2 id="一、下载并安装jdk"><a href="#一、下载并安装jdk" class="headerlink" title="一、下载并安装jdk"></a>一、下载并安装jdk</h2><p><pre class="brush: shell; gutter: true"><br>wget –no-cookies –no-check-certificate –header “Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com” “<a href="http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz" target="_blank" rel="external">http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz</a>“<br>cd ~<br>mkdir local<br>cd local/<br>mkdir jvm<br>sudo tar zxvf ./jdk-7u25-linux-x64.tar.gz  -C /home/codejm/local/jvm<br>vim ~/.bashrc<br></pre></p>
-<h3 id="bashrc-文件-包括后续用到的配置"><a href="#bashrc-文件-包括后续用到的配置" class="headerlink" title=".bashrc 文件(包括后续用到的配置)"></a>.bashrc 文件(包括后续用到的配置)</h3><p><pre class="brush: shell; gutter: true"><br>export JAVA_HOME=/home/codejm/local/jvm/jdk1.7.0_25<br>export JRE_HOME=${JAVA_HOME}/jre<br>export NDK_ROOT=/home/codejm/local/android-ndk-r9<br>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH<br>export PATH=/home/codejm/local/android-ndk-r9:$PATH<br></pre><br>source ~/.bashrc</p>
-<p>测试是否安装成功<br>java -version</p>
-<h2 id="二、下载并安装sdk-adt-bundle-linux-x86-64-20130729"><a href="#二、下载并安装sdk-adt-bundle-linux-x86-64-20130729" class="headerlink" title="二、下载并安装sdk(adt-bundle-linux-x86_64-20130729)"></a>二、下载并安装sdk(adt-bundle-linux-x86_64-20130729)</h2><p>解压到 ~/local/adt-bundle-linux-x86_64-20130729<br>打开eclipse目录并运行eclipse</p>
-<p>Menu -&gt; Window -&gt; Android SDK Manager<br>在打开的窗口中<br>Menu -&gt; Tools -&gt; Options<br>国内需翻墙 配置代理(这个… 我反正用goagent，其他的也可以，宗旨是能访问android下载sdk)<br>勾选 Force https://… (这个应该可以不勾选，反正我勾选了)<br>然后选择要现在的sdk版本，install packages即可</p>
-<p>这个时候就可以创建android程序测试了</p>
-<h2 id="三、下载并安装ndk"><a href="#三、下载并安装ndk" class="headerlink" title="三、下载并安装ndk"></a>三、下载并安装ndk</h2><p>从<a href="http://androidappdocs.appspot.com/sdk/ndk/index.html下载最新版ndk" target="_blank" rel="external">http://androidappdocs.appspot.com/sdk/ndk/index.html下载最新版ndk</a> 我下载的是r9<br>解压缩到 local/android-ndk-r9<br>配置.bashrc文件<br>测试参考地址：<br><a href="http://blog.sina.com.cn/s/blog_3e4774e30100mjug.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_3e4774e30100mjug.html</a></p>
-<p>特别注意 需要在项目路径jni执行ndk-build 生成相应的so文件刷新目录后运行项目即可</p>
-<h2 id="四、下载并安装cocos2d-x"><a href="#四、下载并安装cocos2d-x" class="headerlink" title="四、下载并安装cocos2d-x"></a>四、下载并安装cocos2d-x</h2><p>下载cocos2d-x 到 ~/local/cocos2d-x-2.1.4/<br>修改./create-android-project.sh NDK_ROOT_LOCAL和ANDROID_SDK_ROOT_LOCAL路径<br>执行./create-android-project.sh<br>根据提示创建项目名、包名、anroid版本要求选择 生成项目在根目录 打开根目录下proj.android, 执行./build_native.sh</p>
-<p>生成后 使用eclipse创建项目并指向proj.android<br>把android版本改成2.3.3哦 不然代码会提示错误</p>
-<p>修改以下文件：<br>jni/Android.mk<br>添加最后一个include下面：<br>$(call import-add-path, /home/codejm/local/cocos2d-x-2.1.4)\<br>$(call import-add-path, /home/codejm/local/cocos2d-x-2.1.4/cocos2dx/platform/third_party/android/prebuilt)\</p>
-<p>jni/Application.mk (r9 bug)<br>添加:<br>APP_CPPFLAGS  += -Wno-error=format-security</p>
-<p>AndroidManifesst.xml</p>
-<p>&lt;activity android:name=”.项目名”<br>修改为</p>
-<p>&lt;activity android:name=”包名.项目名”</p>
-<p><uses-sdk android:minsdkversion="8"><br>改成</uses-sdk></p>
-<uses-sdk android:minsdkversion="10">
-
-<p>终端进入jni目录 运行：ndk-build 生成so文件<br>刷新目录 运行程序</p>
-<p><a href="http://www.codejm.com/wp-content/uploads/2013/08/2013-08-23-134659.png"><img title="2013-08-23-134659.png" alt="2013-08-23-134659.png" src="http://www.codejm.com/wp-content/uploads/2013/08/2013-08-23-134659.png" class="aligncenter"></a></p>
-<p>完<br>2013-8-22 15:49:58</p>
-</uses-sdk>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1643,7 +1630,7 @@ export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH // 为编译器设定额
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1651,7 +1638,7 @@ export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH // 为编译器设定额
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1660,7 +1647,7 @@ export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH // 为编译器设定额
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
