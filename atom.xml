@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Codejm 一个php程序员</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.codejm.com/"/>
+  <updated>2016-06-03T07:58:50.000Z</updated>
+  <id>http://www.codejm.com/</id>
+  
+  <author>
+    <name>Codejm</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>科学上网</title>
+    <link href="http://www.codejm.com/2016/06/03/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    <id>http://www.codejm.com/2016/06/03/科学上网/</id>
+    <published>2016-06-03T07:39:10.000Z</published>
+    <updated>2016-06-03T07:58:50.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;为什么要免费的科学上网&quot;&gt;&lt;a href=&quot;#为什么要免费的科学上网&quot; class=&quot;headerlink&quot; title=&quot;为什么要免费的科学上网&quot;&gt;&lt;/a&gt;为什么要免费的科学上网&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;万恶的GFW&lt;/li&gt;
+&lt;li&gt;人穷志短&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;如何实现&quot;&gt;&lt;a href=&quot;#如何实现&quot; class=&quot;headerlink&quot; title=&quot;如何实现&quot;&gt;&lt;/a&gt;如何实现&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;下载xx-net &lt;a href=&quot;https://github.com/XX-net/XX-Net/blob/master/code/default/download.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点击下载&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;解压程序安装包，设置start为777权限 &lt;code&gt;chmod 777 ./start&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;双击 start 启动,证书将被自动导入，如果还有提示非安全连接，请手动导入data/gae_proxy/CA.crt证书&lt;/li&gt;
+&lt;li&gt;安装chrome的SwitchyOmega扩展，程序安装包已附带(SwitchyOmega/SwitchyOmega.crx)，可以直接安装，并导入备份数据(SwitchyOmega/OmegaOptions.bak)&lt;/li&gt;
+&lt;li&gt;设置SwitchyOmega的情景模式为：XX-Net自动切换&lt;/li&gt;
+&lt;li&gt;为了获取更多的流量，可以创建和使用自己的appid &lt;a href=&quot;https://github.com/XX-net/XX-Net/wiki/how-to-create-my-appids&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;创建方式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;大功告成～&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;为什么要免费的科学上网&quot;&gt;&lt;a href=&quot;#为什么要免费的科学上网&quot; class=&quot;headerlink&quot; title=&quot;为什么要免费的科学上网&quot;&gt;&lt;/a&gt;为什么要免费的科学上网&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;万恶的GFW&lt;/li&gt;
+&lt;li&gt;人穷志短&lt;/li&gt;
+&lt;/
+    
+    </summary>
+    
+      <category term="mac" scheme="http://www.codejm.com/categories/mac/"/>
+    
+    
+      <category term="科学上网" scheme="http://www.codejm.com/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
+      <category term="goagent" scheme="http://www.codejm.com/tags/goagent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>base64奇葩遭遇</title>
+    <link href="http://www.codejm.com/2016/03/02/base64%E5%A5%87%E8%91%A9%E9%81%AD%E9%81%87/"/>
+    <id>http://www.codejm.com/2016/03/02/base64奇葩遭遇/</id>
+    <published>2016-03-02T13:38:31.000Z</published>
+    <updated>2016-06-02T13:39:13.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;小记：&quot;&gt;&lt;a href=&quot;#小记：&quot; class=&quot;headerlink&quot; title=&quot;小记：&quot;&gt;&lt;/a&gt;小记：&lt;/h3&gt;&lt;p&gt;刚才碰到一个奇葩的问题，客户端给服务器端传递base64编码的字符串，字符串中包含“+”号，浏览器会把“+”号变成空格，base64解码就出错了 需要手动把空格replace成“+”&lt;/p&gt;
+&lt;pre class=&quot;brush: php; gutter: true&quot;&gt;
+  $encodedData = str_replace(&#39; &#39;, &#39;+&#39;, $encodedData);
+  $decocedData = base64_decode($encodedData);
+&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;小记：&quot;&gt;&lt;a href=&quot;#小记：&quot; class=&quot;headerlink&quot; title=&quot;小记：&quot;&gt;&lt;/a&gt;小记：&lt;/h3&gt;&lt;p&gt;刚才碰到一个奇葩的问题，客户端给服务器端传递base64编码的字符串，字符串中包含“+”号，浏览器会把“+”号变成空格，base64
+    
+    </summary>
+    
+      <category term="php" scheme="http://www.codejm.com/categories/php/"/>
+    
+    
+      <category term="base64" scheme="http://www.codejm.com/tags/base64/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python安装mysql模块</title>
+    <link href="http://www.codejm.com/2016/03/02/python%E5%AE%89%E8%A3%85mysql%E6%A8%A1%E5%9D%97/"/>
+    <id>http://www.codejm.com/2016/03/02/python安装mysql模块/</id>
+    <published>2016-03-02T03:24:45.000Z</published>
+    <updated>2016-06-02T13:25:41.000Z</updated>
+    
+    <content type="html">&lt;p&gt;pip site download MySQL-python package&lt;br&gt;&lt;a href=&quot;https://pypi.python.org/pypi/MySQL-python/1.2.5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://pypi.python.org/pypi/MySQL-python/1.2.5&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;tar xfz MySQL-python-1.2.5.tar.gz&lt;br&gt;cd MySQL-python-1.2.5&lt;/p&gt;
+&lt;h1 id=&quot;edit-site-cfg-set-mysql-config-usr-local-mysql-bin-mysql-config&quot;&gt;&lt;a href=&quot;#edit-site-cfg-set-mysql-config-usr-local-mysql-bin-mysql-config&quot; class=&quot;headerlink&quot; title=&quot;edit site.cfg:  set mysql_config = /usr/local/mysql/bin/mysql_config&quot;&gt;&lt;/a&gt;edit site.cfg:  set mysql_config = /usr/local/mysql/bin/mysql_config&lt;/h1&gt;&lt;p&gt;python setup.py build&lt;br&gt;sudo python setup.py install # or su first&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;pip site download MySQL-python package&lt;br&gt;&lt;a href=&quot;https://pypi.python.org/pypi/MySQL-python/1.2.5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https:
+    
+    </summary>
+    
+      <category term="python" scheme="http://www.codejm.com/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://www.codejm.com/tags/python/"/>
+    
+      <category term="mysqldb" scheme="http://www.codejm.com/tags/mysqldb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>20150511</title>
+    <link href="http://www.codejm.com/2015/05/11/20150511/"/>
+    <id>http://www.codejm.com/2015/05/11/20150511/</id>
+    <published>2015-05-11T13:35:47.000Z</published>
+    <updated>2016-06-02T13:36:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近工作感觉压力大，比较累，会不会猝死呢。。。。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近工作感觉压力大，比较累，会不会猝死呢。。。。&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="生活" scheme="http://www.codejm.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="随感" scheme="http://www.codejm.com/tags/%E9%9A%8F%E6%84%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>php安装yaf/yar扩展</title>
+    <link href="http://www.codejm.com/2014/08/12/php%E5%AE%89%E8%A3%85yaf-yar%E6%89%A9%E5%B1%95/"/>
+    <id>http://www.codejm.com/2014/08/12/php安装yaf-yar扩展/</id>
+    <published>2014-08-12T13:34:00.000Z</published>
+    <updated>2016-06-02T13:37:41.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;yaf安装&quot;&gt;&lt;a href=&quot;#yaf安装&quot; class=&quot;headerlink&quot; title=&quot;yaf安装&quot;&gt;&lt;/a&gt;yaf安装&lt;/h2&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+git clone https://github.com/laruence/php-yaf.git yaf
+cd yaf
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+sudo make
+sudo make install
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;msgpack安装-yar序列化使用msgpack-当然也可以选择其他序列化方式json，默认为php&quot;&gt;&lt;a href=&quot;#msgpack安装-yar序列化使用msgpack-当然也可以选择其他序列化方式json，默认为php&quot; class=&quot;headerlink&quot; title=&quot;msgpack安装, yar序列化使用msgpack(当然也可以选择其他序列化方式json，默认为php)&quot;&gt;&lt;/a&gt;msgpack安装, yar序列化使用msgpack(当然也可以选择其他序列化方式json，默认为php)&lt;/h2&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+git clone https://github.com/msgpack/msgpack-php.git
+cd msgpack-php
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+sudo make
+sudo make install
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;yar安装&quot;&gt;&lt;a href=&quot;#yar安装&quot; class=&quot;headerlink&quot; title=&quot;yar安装&quot;&gt;&lt;/a&gt;yar安装&lt;/h2&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+git clone https://github.com/laruence/yar.git
+cd yar
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config --enable-msgpack
+sudo make
+sudo make install
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;修改php-ini配置&quot;&gt;&lt;a href=&quot;#修改php-ini配置&quot; class=&quot;headerlink&quot; title=&quot;修改php.ini配置&quot;&gt;&lt;/a&gt;修改php.ini配置&lt;/h2&gt;&lt;p&gt;extension=yaf.so&lt;br&gt;extension=msgpack.so&lt;br&gt;extension=yar.so&lt;/p&gt;
+&lt;p&gt;[yar]&lt;br&gt;yar.packager=”msgpack”&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;yaf安装&quot;&gt;&lt;a href=&quot;#yaf安装&quot; class=&quot;headerlink&quot; title=&quot;yaf安装&quot;&gt;&lt;/a&gt;yaf安装&lt;/h2&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+git clone https://gi
+    
+    </summary>
+    
+      <category term="php" scheme="http://www.codejm.com/categories/php/"/>
+    
+    
+      <category term="yaf" scheme="http://www.codejm.com/tags/yaf/"/>
+    
+      <category term="yar" scheme="http://www.codejm.com/tags/yar/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim多文件替换字符串</title>
+    <link href="http://www.codejm.com/2014/07/15/vim%E5%A4%9A%E6%96%87%E4%BB%B6%E6%9B%BF%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <id>http://www.codejm.com/2014/07/15/vim多文件替换字符串/</id>
+    <published>2014-07-15T05:31:58.000Z</published>
+    <updated>2016-06-02T13:33:25.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;如何使用vim替换多文件中存在的字符串呢？&quot;&gt;&lt;a href=&quot;#如何使用vim替换多文件中存在的字符串呢？&quot; class=&quot;headerlink&quot; title=&quot;如何使用vim替换多文件中存在的字符串呢？&quot;&gt;&lt;/a&gt;如何使用vim替换多文件中存在的字符串呢？&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;1. 定位目录cd, 定位的要替换的目录
+2. :args ./*.html 包含子目录使用 :args **/*.html
+3. :argdo %s/old/new/ge | update
+
+完成！！
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;如何使用vim替换多文件中存在的字符串呢？&quot;&gt;&lt;a href=&quot;#如何使用vim替换多文件中存在的字符串呢？&quot; class=&quot;headerlink&quot; title=&quot;如何使用vim替换多文件中存在的字符串呢？&quot;&gt;&lt;/a&gt;如何使用vim替换多文件中存在的字符串呢？&lt;/
+    
+    </summary>
+    
+      <category term="vim" scheme="http://www.codejm.com/categories/vim/"/>
+    
+    
+      <category term="vim" scheme="http://www.codejm.com/tags/vim/"/>
+    
+      <category term="替换" scheme="http://www.codejm.com/tags/%E6%9B%BF%E6%8D%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vimRepress插件bug</title>
+    <link href="http://www.codejm.com/2014/06/22/vimRepress%E6%8F%92%E4%BB%B6bug/"/>
+    <id>http://www.codejm.com/2014/06/22/vimRepress插件bug/</id>
+    <published>2014-06-22T13:29:51.000Z</published>
+    <updated>2016-06-02T13:50:53.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;VimRepress不能写博客了&quot;&gt;&lt;a href=&quot;#VimRepress不能写博客了&quot; class=&quot;headerlink&quot; title=&quot;VimRepress不能写博客了&quot;&gt;&lt;/a&gt;VimRepress不能写博客了&lt;/h2&gt;&lt;p&gt;好久没写博客了,今天使用vim写博客才发现不能写了,原因是从github上更新后没修改bug,记录一下blog.vim&lt;/p&gt;
+&lt;p&gt;vimrc配置:&lt;br&gt;    let VIMPRESS = [{‘username’:’admin’,&lt;br&gt;                \’blog_url’:’&lt;a href=&quot;http://www.codejm.com/&quot;&gt;http://www.codejm.com/&lt;/a&gt;‘&lt;br&gt;                }]&lt;/p&gt;
+&lt;p&gt;blog.vim:&lt;/p&gt;
+&lt;pre class=&quot;brush: html; gutter: true&quot;&gt;
+&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;VimRepress不能写博客了&quot;&gt;&lt;a href=&quot;#VimRepress不能写博客了&quot; class=&quot;headerlink&quot; title=&quot;VimRepress不能写博客了&quot;&gt;&lt;/a&gt;VimRepress不能写博客了&lt;/h2&gt;&lt;p&gt;好久没写博客了,今天使用vi
+    
+    </summary>
+    
+      <category term="vim" scheme="http://www.codejm.com/categories/vim/"/>
+    
+    
+      <category term="vim" scheme="http://www.codejm.com/tags/vim/"/>
+    
+      <category term="vimrepress" scheme="http://www.codejm.com/tags/vimrepress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu重新安装vim</title>
+    <link href="http://www.codejm.com/2014/05/12/ubuntu%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85vim/"/>
+    <id>http://www.codejm.com/2014/05/12/ubuntu重新安装vim/</id>
+    <published>2014-05-11T17:27:50.000Z</published>
+    <updated>2016-06-02T13:29:13.000Z</updated>
+    
+    <content type="html">&lt;p&gt;sudo apt-get remove vim&lt;/p&gt;
+&lt;p&gt;sudo add-apt-repository ppa:fcwu-tw/ppa&lt;br&gt;sudo apt-get update&lt;br&gt;sudo apt-get install vim&lt;br&gt;sudo apt-get install vim-gnome&lt;/p&gt;
+&lt;p&gt;修改gvim默认以–remote-tab打开&lt;br&gt;sudo vim /usr/share/applications/gvim.desktop&lt;br&gt;Exec=gvim -f –remote-tab %F&lt;/p&gt;
+&lt;p&gt;配置：&lt;br&gt;&lt;a href=&quot;https://github.com/codejm/Vim&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/codejm/Vim&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.codejm.com/archives/229&quot;&gt;http://www.codejm.com/archives/229&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;sudo apt-get remove vim&lt;/p&gt;
+&lt;p&gt;sudo add-apt-repository ppa:fcwu-tw/ppa&lt;br&gt;sudo apt-get update&lt;br&gt;sudo apt-get install vim&lt;br&gt;sudo apt-get
+    
+    </summary>
+    
+      <category term="vim" scheme="http://www.codejm.com/categories/vim/"/>
+    
+    
+      <category term="vim" scheme="http://www.codejm.com/tags/vim/"/>
+    
+      <category term="gvim" scheme="http://www.codejm.com/tags/gvim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python安装redis模块</title>
+    <link href="http://www.codejm.com/2014/03/05/python%E5%AE%89%E8%A3%85redis%E6%A8%A1%E5%9D%97/"/>
+    <id>http://www.codejm.com/2014/03/05/python安装redis模块/</id>
+    <published>2014-03-05T04:26:03.000Z</published>
+    <updated>2016-06-02T13:27:22.000Z</updated>
+    
+    <content type="html">&lt;p&gt;install redis&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;download redis package &lt;a href=&quot;http://download.redis.io/releases/redis-2.8.6.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://download.redis.io/releases/redis-2.8.6.tar.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;tar zxvf redis-2.8.6.tar.gz&lt;/li&gt;
+&lt;li&gt;cd redis-2.8.6/&lt;/li&gt;
+&lt;li&gt;sudo chmod 755 ./ -R&lt;/li&gt;
+&lt;li&gt;cd utils&lt;/li&gt;
+&lt;li&gt;./install_server&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;install redis-py&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;git clone &lt;a href=&quot;https://github.com/andymccurdy/redis-py.git&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/andymccurdy/redis-py.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;cd redis-py&lt;/li&gt;
+&lt;li&gt;sudo chmod 755 ./ -R&lt;/li&gt;
+&lt;li&gt;sudo python setup.py install&lt;/li&gt;
+&lt;li&gt;test: import redis&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;install redis&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;download redis package &lt;a href=&quot;http://download.redis.io/releases/redis-2.8.6.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;ext
+    
+    </summary>
+    
+      <category term="python" scheme="http://www.codejm.com/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://www.codejm.com/tags/python/"/>
+    
+      <category term="redis" scheme="http://www.codejm.com/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu下安装svnversion</title>
+    <link href="http://www.codejm.com/2014/02/20/ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85svnversion/"/>
+    <id>http://www.codejm.com/2014/02/20/ubuntu下安装svnversion/</id>
+    <published>2014-02-20T13:23:07.000Z</published>
+    <updated>2016-06-02T13:24:01.000Z</updated>
+    
+    <content type="html">&lt;p&gt;The below should add the repository on 12.04 Precise (the repository doesn’t contain a Source directory, which the add-apt-repository command assumes it will, so I have used a slightly different method).&lt;/p&gt;
+&lt;p&gt;sudo sh -c ‘echo “# WANdisco Open Source Repo” &amp;gt;&amp;gt; /etc/apt/sources.list.d/WANdisco.list’&lt;br&gt;sudo sh -c ‘echo “deb &lt;a href=&quot;http://opensource.wandisco.com/ubuntu&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://opensource.wandisco.com/ubuntu&lt;/a&gt; precise svn18” &amp;gt;&amp;gt; /etc/apt/sources.list.d/WANdisco.list’&lt;br&gt;wget -q &lt;a href=&quot;http://opensource.wandisco.com/wandisco-debian.gpg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://opensource.wandisco.com/wandisco-debian.gpg&lt;/a&gt; -O- | sudo apt-key add -&lt;br&gt;sudo apt-get update&lt;br&gt;To confirm that the new subversion package has been detected, run:&lt;/p&gt;
+&lt;p&gt;apt-cache show subversion | grep ‘^Version:’&lt;br&gt;If the 1.8 package is listed, you should then be able to install as normal:&lt;/p&gt;
+&lt;p&gt;sudo apt-get install subversion&lt;/p&gt;
+&lt;p&gt;==================================================================================================&lt;br&gt;client&lt;br&gt;install software rapidsvn&lt;br&gt;运行rapidsvn出错&lt;br&gt;run rapidsvn error:&lt;/p&gt;
+&lt;p&gt;正确修正方案:&lt;br&gt;$ cd /usr/lib&lt;br&gt;$ sudo ln -s libsvn_subr-1.so.0 libsvn_subr-1.so.1&lt;br&gt;$ sudo ln -s libsvn_client-1.so.0 libsvn_client-1.so.1&lt;br&gt;$ sudo ln -s libsvn_wc-1.so.0 libsvn_wc-1.so.1&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The below should add the repository on 12.04 Precise (the repository doesn’t contain a Source directory, which the add-apt-repository com
+    
+    </summary>
+    
+      <category term="linux" scheme="http://www.codejm.com/categories/linux/"/>
+    
+    
+      <category term="svn" scheme="http://www.codejm.com/tags/svn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xdebug2.2.3安装</title>
+    <link href="http://www.codejm.com/2013/12/04/xdebug2-2-3%E5%AE%89%E8%A3%85/"/>
+    <id>http://www.codejm.com/2013/12/04/xdebug2-2-3安装/</id>
+    <published>2013-12-04T02:55:04.000Z</published>
+    <updated>2016-06-02T13:21:40.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;下载xdebug-2-2-3&quot;&gt;&lt;a href=&quot;#下载xdebug-2-2-3&quot; class=&quot;headerlink&quot; title=&quot;下载xdebug 2.2.3&quot;&gt;&lt;/a&gt;下载xdebug 2.2.3&lt;/h2&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+wget http://www.xdebug.org/files/xdebug-2.2.3.tgz
+tar zxvf xdebug-2.2.3.tgz
+cd xdebug-2.2.3
+/usr/local/webserver/php/bin/phpize
+./configure --with-php-config=/usr/local/webserver/php/bin/php-configconfig
+make &amp;&amp; make install
+vim php.ini
+修改:
+    display_errors = On
+    html_errors = On
+添加:
+    [zend]
+    zend_extension=&quot;/usr/local/webserver/php/lib/php/extensions/no-debug-non-zts-20090626/xdebug.so&quot;
+    xdebug.default_enable = On
+    xdebug.show_exception_trace = On
+    xdebug.show_local_vars = 1
+    xdebug.max_nesting_level = 50
+    xdebug.var_display_max_depth = 6
+    xdebug.dump_once = On
+    xdebug.dump_globals = On
+    xdebug.dump_undefined = On
+    xdebug.dump.REQUEST = *
+    xdebug.cli_color = 2
+&lt;/pre&gt;
+
+&lt;p&gt;保存并重新启动php&lt;br&gt;效果：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.codejm.com/uploads/2013/12/20131204111118.jpg&quot;&gt;&lt;img title=&quot;20131204111118.jpg&quot; alt=&quot;20131204111118.jpg&quot; src=&quot;http://www.codejm.com/uploads/2013/12/20131204111118.jpg&quot; class=&quot;aligncenter&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;下载xdebug-2-2-3&quot;&gt;&lt;a href=&quot;#下载xdebug-2-2-3&quot; class=&quot;headerlink&quot; title=&quot;下载xdebug 2.2.3&quot;&gt;&lt;/a&gt;下载xdebug 2.2.3&lt;/h2&gt;&lt;pre class=&quot;brush: shell;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>linux常用命令</title>
+    <link href="http://www.codejm.com/2013/12/02/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://www.codejm.com/2013/12/02/linux常用命令/</id>
+    <published>2013-12-02T02:23:40.000Z</published>
+    <updated>2016-06-02T11:48:29.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;任务-命令组合&quot;&gt;&lt;a href=&quot;#任务-命令组合&quot; class=&quot;headerlink&quot; title=&quot;任务    命令组合&quot;&gt;&lt;/a&gt;任务    命令组合&lt;/h2&gt;&lt;p&gt;1    删除0字节文件&lt;br&gt;    find . -type f -size 0 -exec rm -rf {} \;&lt;br&gt;    find . type f -size 0 -delete&lt;br&gt;2    查看进程，按内存从大到小排列&lt;br&gt;    ps -e -o “%C : %p : %z : %a”|sort -k5 -nr&lt;br&gt;3    按cpu利用率从大到小排列&lt;br&gt;    ps -e -o “%C : %p : %z : %a”|sort -nr&lt;br&gt;4    打印说cache里的URL&lt;br&gt;    grep -r -a jpg /data/cache/&lt;em&gt; | strings | grep “http:” | awk -F’http:’ ‘{print “http:”$2;}’&lt;br&gt;5    查看http的并发请求数及其TCP连接状态&lt;br&gt;    netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’&lt;br&gt;6    sed在这个文里Root的一行，匹配Root一行，将no替换成yes。&lt;br&gt;    sed -i ‘/Root/s/no/yes/‘ /etc/ssh/sshd_config&lt;br&gt;7    如何杀掉mysql进程&lt;br&gt;    ps aux |grep mysql |grep -v grep  |awk ‘{print $2}’ |xargs kill -9&lt;br&gt;    killall -TERM mysqld&lt;br&gt;    kill -9 &lt;code&gt;cat /usr/local/apache2/logs/httpd.pid&lt;/code&gt;&lt;br&gt;8    显示运行3级别开启的服务(从中了解到cut的用途，截取数据)&lt;br&gt;    ls /etc/rc3.d/S&lt;/em&gt; |cut -c 15-&lt;br&gt;9    如何在编写SHELL显示多个信息，用EOF&lt;br&gt;    cat &amp;lt;&amp;lt; EOF&lt;br&gt;    +————————————————————–+&lt;br&gt;    |   === Welcome to Tunoff services ===                         |&lt;br&gt;    +————————————————————–+&lt;br&gt;    EOF&lt;br&gt;10    for的用法(如给mysql建软链接)&lt;br&gt;    cd /usr/local/mysql/bin&lt;br&gt;    for i in &lt;em&gt;&lt;br&gt;    do ln /usr/local/mysql/bin/$i /usr/bin/$i&lt;br&gt;    done&lt;br&gt;11    取IP地址&lt;br&gt;    ifconfig eth0 |grep “inet addr:” |awk ‘{print $2}’|cut -c 6-&lt;br&gt;    ifconfig | grep ‘inet addr:’| grep -v ‘127.0.0.1’ |cut -d: -f2 | awk ‘{ print $1}’&lt;br&gt;12    内存的大小&lt;br&gt;    free -m |grep “Mem” | awk ‘{print $2}’&lt;br&gt;13    查看80端口的连接，并排序&lt;br&gt;    netstat -an -t | grep “:80” | grep ESTABLISHED | awk ‘{printf “%s %s\n”,$5,$6}’ | sort&lt;br&gt;14    查看Apache的并发请求数及其TCP连接状态&lt;br&gt;    netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’&lt;br&gt;15    统计一下服务器下面所有的jpg的文件的大小&lt;br&gt;    find / -name &lt;/em&gt;.jpg -exec wc -c {} \;|awk ‘{print $1}’|awk ‘{a+=$1}END{print a}’&lt;br&gt;16    CPU的数量&lt;br&gt;    cat /proc/cpuinfo |grep -c processor&lt;br&gt;17    CPU负载&lt;br&gt;    cat /proc/loadavg&lt;br&gt;18    CPU负载&lt;br&gt;    mpstat 1 1&lt;br&gt;19    内存空间&lt;br&gt;    free&lt;br&gt;20    磁盘空间&lt;br&gt;    df -h&lt;br&gt;21    如发现某个分区空间接近用尽，可以进入该分区的挂载点，用以下命令找出占用空间最多的文件或目录&lt;br&gt;    du -cks &lt;em&gt; | sort -rn | head -n 10&lt;br&gt;22    磁盘I/O负载&lt;br&gt;    iostat -x 1 2&lt;br&gt;23    网络负载&lt;br&gt;    sar -n DEV&lt;br&gt;24    网络错误&lt;br&gt;    netstat -i&lt;br&gt;    cat /proc/net/dev&lt;br&gt;25    网络连接数目&lt;br&gt;    netstat -an | grep -E “^(tcp)” | cut -c 68- | sort | uniq -c | sort -n&lt;br&gt;26    进程总数&lt;br&gt;    ps aux | wc -l&lt;br&gt;27    查看进程树&lt;br&gt;    ps aufx&lt;br&gt;28    可运行进程数目&lt;br&gt;    vmwtat 1 5&lt;br&gt;29    检查DNS Server工作是否正常，这里以61.139.2.69为例&lt;br&gt;    dig www.baidu.com @61.139.2.69&lt;br&gt;30    检查当前登录的用户个数&lt;br&gt;    who | wc -l&lt;br&gt;31    日志查看、搜索&lt;br&gt;    cat /var/log/rflogview/&lt;/em&gt;errors&lt;br&gt;    grep -i error /var/log/messages&lt;br&gt;    grep -i fail /var/log/messages&lt;br&gt;    tail -f -n 2000 /var/log/messages&lt;br&gt;32    内核日志&lt;br&gt;    dmesg&lt;br&gt;33    时间&lt;br&gt;    date&lt;br&gt;34    已经打开的句柄数&lt;br&gt;    lsof | wc -l&lt;br&gt;35    网络抓包，直接输出摘要信息到文件。&lt;br&gt;    tcpdump -c 10000 -i eth0 -n dst port 80 &amp;gt; /root/pkts&lt;br&gt;36    然后检查IP的重复数 并从小到大排序 注意 “-t\  +0” 中间是两个空格，less命令的用法。&lt;br&gt;    less pkts | awk {‘printf $3”\n”‘} | cut -d. -f 1-4 | sort | uniq -c | awk {‘printf $1” “$2”\n”‘} | sort -n -t\  +0&lt;br&gt;37    kudzu查看网卡型号&lt;br&gt;    kudzu –probe –class=network&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;任务-命令组合&quot;&gt;&lt;a href=&quot;#任务-命令组合&quot; class=&quot;headerlink&quot; title=&quot;任务    命令组合&quot;&gt;&lt;/a&gt;任务    命令组合&lt;/h2&gt;&lt;p&gt;1    删除0字节文件&lt;br&gt;    find . -type f -size 0 -
+    
+    </summary>
+    
+      <category term="linux" scheme="http://www.codejm.com/categories/linux/"/>
+    
+    
+      <category term="命令行" scheme="http://www.codejm.com/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/"/>
+    
+      <category term="linux" scheme="http://www.codejm.com/tags/linux/"/>
+    
+      <category term="shell" scheme="http://www.codejm.com/tags/shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>php转换字符串效率对比</title>
+    <link href="http://www.codejm.com/2013/11/24/php%E8%BD%AC%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%88%E7%8E%87%E5%AF%B9%E6%AF%94/"/>
+    <id>http://www.codejm.com/2013/11/24/php转换字符串效率对比/</id>
+    <published>2013-11-24T06:38:12.000Z</published>
+    <updated>2016-06-02T13:39:41.000Z</updated>
+    
+    <content type="html">&lt;p&gt;php 转换字符串有多种方式，哪种效率最高呢。最了一下测试结果如下：&lt;/p&gt;
+&lt;p&gt;strval执行时间: 14.7 毫秒&lt;br&gt;settype执行时间: 8.9 毫秒&lt;br&gt;string执行时间: 10.3 毫秒&lt;/p&gt;
+&lt;pre class=&quot;brush: php; gutter: true&quot;&gt;
+&lt;?php
+/**
+ *      [CodeJm!] Author CodeJm[codejm@163.com].
+ *
+ *
+ *      $Id: aaa.php 2013-11-28 16:20:07 codejm $
+ */
+class runtime
+{
+    var $StartTime = 0;
+    var $StopTime = 0;
+    function get_microtime()
+    {
+        list($usec, $sec) = explode(&#39; &#39;, microtime());
+        return ((float)$usec + (float)$sec);
+    }
+    function start()
+    {
+        $this-&gt;StartTime = $this-&gt;get_microtime();
+    }
+    function stop()
+    {
+        $this-&gt;StopTime = $this-&gt;get_microtime();
+    }
+    function spent()
+    {
+        return round(($this-&gt;StopTime - $this-&gt;StartTime) * 1000, 1);
+    }
+}
+//例子
+$runtime= new runtime;
+$runtime-&gt;start();
+// code S
+$data = 2.1;
+for($i=0; $i&lt;10000; $i++)=&quot;&quot; {=&quot;&quot; $datastr=&quot;strval($data);&quot; }=&quot;&quot; code=&quot;&quot; e=&quot;&quot; $runtime-=&quot;&quot;&gt;stop();
+echo &quot;strval执行时间: &quot;.$runtime-&gt;spent().&quot; 毫秒&lt;br&gt;&quot;;
+$runtime-&gt;start();
+// code S
+$data = 2.1;
+for($i=0; $i&lt;10000; $i++)=&quot;&quot; {=&quot;&quot; $datastr=&quot;settype($data,&quot; &quot;string&quot;);=&quot;&quot; }=&quot;&quot; code=&quot;&quot; e=&quot;&quot; $runtime-=&quot;&quot;&gt;stop();
+echo &quot;settype执行时间: &quot;.$runtime-&gt;spent().&quot; 毫秒&lt;br&gt;&quot;;
+$runtime-&gt;start();
+// code S
+$data = 2.1;
+for($i=0; $i&lt;10000; $i++)=&quot;&quot; {=&quot;&quot; $datastr=&quot;(string)$data;&quot; }=&quot;&quot; code=&quot;&quot; e=&quot;&quot; $runtime-=&quot;&quot;&gt;stop();
+echo &quot;string执行时间: &quot;.$runtime-&gt;spent().&quot; 毫秒&lt;br&gt;&quot;;
+?&gt;
+&lt;/10000;&gt;&lt;/10000;&gt;&lt;/10000;&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;php 转换字符串有多种方式，哪种效率最高呢。最了一下测试结果如下：&lt;/p&gt;
+&lt;p&gt;strval执行时间: 14.7 毫秒&lt;br&gt;settype执行时间: 8.9 毫秒&lt;br&gt;string执行时间: 10.3 毫秒&lt;/p&gt;
+&lt;pre class=&quot;brush: php; g
+    
+    </summary>
+    
+      <category term="php" scheme="http://www.codejm.com/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://www.codejm.com/tags/php/"/>
+    
+      <category term="string" scheme="http://www.codejm.com/tags/string/"/>
+    
+      <category term="strval" scheme="http://www.codejm.com/tags/strval/"/>
+    
+      <category term="settype" scheme="http://www.codejm.com/tags/settype/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim的特殊命令</title>
+    <link href="http://www.codejm.com/2013/11/20/vim%E7%9A%84%E7%89%B9%E6%AE%8A%E5%91%BD%E4%BB%A4/"/>
+    <id>http://www.codejm.com/2013/11/20/vim的特殊命令/</id>
+    <published>2013-11-20T11:35:38.000Z</published>
+    <updated>2016-06-02T11:36:10.000Z</updated>
+    
+    <content type="html">&lt;p&gt;:w !sudo tee %&lt;br&gt;在Linux系统下面辛苦编辑了一个配置文件，要保存的时候发现要root权限，怎么办？这个命令就是让你不用以root权限来运行VIM但是可以编辑系统文件的命令。&lt;/p&gt;
+&lt;p&gt;:earlier 15m&lt;br&gt;把当前文件恢复到15分钟前的状态， 这个时间参数除了分钟，还有很多别的格式。&lt;/p&gt;
+&lt;p&gt;删除指定范围 diw 和 di( 和 di”&lt;br&gt;diw 删除当前词&lt;br&gt;di( 或者 di) 删除当前括号内的内容，光标要在括号上，或者括号内&lt;br&gt;di” 删除引号内的内容&lt;br&gt;相同的命令还有ciw , ci( , ci” 还有dt, dt), dt”，ct, ct), ct”&lt;/p&gt;
+&lt;p&gt;:! [command] 和 :.! [command]&lt;br&gt;前一个是执行外部命令，后面一个只是在：后面加了一个”.” 好处是把命令的输出直接放在当前行。比如你要在文档里面插入当前日期，就可以用 :.! date&lt;/p&gt;
+&lt;p&gt;:%!xxd  把VIM变成Hex Editor&lt;br&gt;:%!xxd -r 从Hex Editor变回去&lt;/p&gt;
+&lt;p&gt;:g/rgba/y A&lt;br&gt;把所有包含rgba的行复制到a寄存器里面，然后可以用 “ap粘帖，这里用大写A是取为了把找打的行追加在寄存器里面，否则就只有最后一行被放在了寄存器里面了&lt;/p&gt;
+&lt;p&gt;:verbose set xxxxxx?&lt;br&gt;有时候.vimrc的一些配置会被一些插件或者autocommand重新设置，要找出哪些地方设置了这个，就用这个命令， xxxxxx这里泛指VIM的设置项，比如 :verbose set cindent? 就找出来哪些地方设置了cindent&lt;/p&gt;
+&lt;p&gt;q:&lt;br&gt;查看命令历史，这个我们应该经常不小心就掉出来了&lt;/p&gt;
+&lt;p&gt;gv&lt;br&gt;重新选择上次的选择&lt;/p&gt;
+&lt;p&gt;gf， gF&lt;br&gt;gf把光标移到文件名上，比如c文件里面include的头文件，按gf就会打开这个文件&lt;br&gt;gF跟gf已经，这个命令认识“文件名：行号”的格式，可以直接跳转到指定行&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;:w !sudo tee %&lt;br&gt;在Linux系统下面辛苦编辑了一个配置文件，要保存的时候发现要root权限，怎么办？这个命令就是让你不用以root权限来运行VIM但是可以编辑系统文件的命令。&lt;/p&gt;
+&lt;p&gt;:earlier 15m&lt;br&gt;把当前文件恢复到15分钟前的状态
+    
+    </summary>
+    
+      <category term="vim" scheme="http://www.codejm.com/categories/vim/"/>
+    
+    
+      <category term="vim" scheme="http://www.codejm.com/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cocos2dx初体验</title>
+    <link href="http://www.codejm.com/2013/11/12/cocos2dx%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <id>http://www.codejm.com/2013/11/12/cocos2dx初体验/</id>
+    <published>2013-11-12T11:40:36.000Z</published>
+    <updated>2016-06-02T11:42:09.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;资源图片&quot;&gt;&lt;a href=&quot;#资源图片&quot; class=&quot;headerlink&quot; title=&quot;资源图片&quot;&gt;&lt;/a&gt;资源图片&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://www.codejm.com/uploads/2013/11/122458972.png&quot;&gt;&lt;img title=&quot;122458972.png&quot; alt=&quot;122458972.png&quot; src=&quot;http://www.codejm.com/uploads/2013/11/122458972.png&quot; class=&quot;aligncenter&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码-HelloWorldScene-cpp：&quot;&gt;&lt;a href=&quot;#代码-HelloWorldScene-cpp：&quot; class=&quot;headerlink&quot; title=&quot;代码 HelloWorldScene.cpp：&quot;&gt;&lt;/a&gt;代码 HelloWorldScene.cpp：&lt;/h2&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+    CCSize s = CCDirector::sharedDirector()-&gt;getWinSize();
+    //
+    //#1：生成动画需要的数据类
+    CCTexture2D *texture=CCTextureCache::sharedTextureCache()-&gt;addImage(&quot;122458972.png&quot;);
+    //
+    CCSpriteFrame *frame0=CCSpriteFrame::createWithTexture(texture,CCRectMake(32*0, 48*0, 32, 48));
+    CCSpriteFrame *frame1=CCSpriteFrame::createWithTexture(texture,CCRectMake(32*1, 48*0, 32, 48));
+    CCSpriteFrame *frame2=CCSpriteFrame::createWithTexture(texture,CCRectMake(32*2, 48*0, 32, 48));
+    CCSpriteFrame *frame3=CCSpriteFrame::createWithTexture(texture,CCRectMake(32*3, 48*0, 32, 48));
+    //
+    CCArray *animFrames = CCArray::create();
+    animFrames-&gt;addObject(frame0);
+    animFrames-&gt;addObject(frame1);
+    animFrames-&gt;addObject(frame2);
+    animFrames-&gt;addObject(frame3);
+    //
+    CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames,0.2f);
+    animFrames-&gt;release();
+    //
+    CCSprite *heroSprite0=CCSprite::createWithSpriteFrame(frame0);
+    if(!heroSprite0)
+        return false;
+    heroSprite0-&gt;setPosition(ccp(16,s.height-24));
+    addChild(heroSprite0,1);
+    CCAnimate *animate=CCAnimate::create(animation);
+    heroSprite0-&gt;runAction(CCRepeatForever::create(animate));//一直执行下去
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;或者改成循环&quot;&gt;&lt;a href=&quot;#或者改成循环&quot; class=&quot;headerlink&quot; title=&quot;或者改成循环:&quot;&gt;&lt;/a&gt;或者改成循环:&lt;/h2&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+    CCSize s = CCDirector::sharedDirector()-&gt;getWinSize();
+    //
+    //#1：生成动画需要的数据类
+    CCTexture2D *texture=CCTextureCache::sharedTextureCache()-&gt;addImage(&quot;122458972.png&quot;);
+    CCArray *animFrames = CCArray::create();
+    CCSpriteFrame *frame0 = 0;
+    //
+    for(int i=0; i&lt;4; i++){=&quot;&quot; frame0=&quot;CCSpriteFrame::createWithTexture(texture,CCRectMake(32*i,&quot; 48*0,=&quot;&quot; 32,=&quot;&quot; 48));=&quot;&quot; animframes-=&quot;&quot;&gt;addObject(frame0);
+    }
+    //
+    CCAnimation *animation=CCAnimation::createWithSpriteFrames(animFrames,0.2f);
+    animFrames-&gt;release();
+    //
+    CCSprite *heroSprite0=CCSprite::createWithSpriteFrame(frame0);
+    if(!heroSprite0)
+        return false;
+    heroSprite0-&gt;setPosition(ccp(16,s.height-24));
+    addChild(heroSprite0,1);
+    CCAnimate *animate=CCAnimate::create(animation);
+    heroSprite0-&gt;runAction(CCRepeatForever::create(animate));//一直执行下去
+&lt;/4;&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;编译执行&quot;&gt;&lt;a href=&quot;#编译执行&quot; class=&quot;headerlink&quot; title=&quot;编译执行&quot;&gt;&lt;/a&gt;编译执行&lt;/h2&gt;&lt;p&gt;make&lt;br&gt;./bin/release/Codejm01&lt;/p&gt;
+&lt;h2 id=&quot;效果&quot;&gt;&lt;a href=&quot;#效果&quot; class=&quot;headerlink&quot; title=&quot;效果:&quot;&gt;&lt;/a&gt;效果:&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://www.codejm.com/uploads/2013/11/20131104151530.png&quot;&gt;&lt;img title=&quot;20131104151530.png&quot; alt=&quot;20131104151530.png&quot; src=&quot;http://www.codejm.com/uploads/2013/11/20131104151530.png&quot; class=&quot;aligncenter&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;资源来自老G小屋,进行代码升级到coco2d-x 2.2。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;资源图片&quot;&gt;&lt;a href=&quot;#资源图片&quot; class=&quot;headerlink&quot; title=&quot;资源图片&quot;&gt;&lt;/a&gt;资源图片&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://www.codejm.com/uploads/2013/11/122458972.png&quot;&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vim下开发cocos2Dx</title>
+    <link href="http://www.codejm.com/2013/11/02/vim%E4%B8%8B%E5%BC%80%E5%8F%91cocos2D/"/>
+    <id>http://www.codejm.com/2013/11/02/vim下开发cocos2D/</id>
+    <published>2013-11-02T11:33:30.000Z</published>
+    <updated>2016-06-02T11:34:41.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;声明-本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。&quot;&gt;&lt;a href=&quot;#声明-本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。&quot; class=&quot;headerlink&quot; title=&quot;声明:本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。&quot;&gt;&lt;/a&gt;声明:本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。&lt;/h3&gt;&lt;h2 id=&quot;一、定位项目&quot;&gt;&lt;a href=&quot;#一、定位项目&quot; class=&quot;headerlink&quot; title=&quot;一、定位项目&quot;&gt;&lt;/a&gt;一、定位项目&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;在github上随便找一个项目，我随便找了个前辈的:
+我把放在cocos2d-x 根目录
+git clone https://github.com/gelosie/PlayThePlane.git
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;二、配置Makefile&quot;&gt;&lt;a href=&quot;#二、配置Makefile&quot; class=&quot;headerlink&quot; title=&quot;二、配置Makefile&quot;&gt;&lt;/a&gt;二、配置Makefile&lt;/h2&gt;&lt;p&gt;进入prog.linux&lt;/p&gt;
+&lt;p&gt;vim Makefile&lt;/p&gt;
+&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+// 项目名称
+EXECUTABLE = PlayThePlane
+INCLUDES = -I.. -I../Classes
+// 项目中Classes下所有cpp文件,特别重要,如果不加入容易提示&quot;未声明的引用&quot;
+SOURCES = main.cpp \
+        ../Classes/AppDelegate.cpp \
+        ../Classes/HelloWorldScene.cpp \
+        ../Classes/CCFoePlane.cpp \
+        ../Classes/CCProps.cpp \
+        ../Classes/IntroLayer.cpp
+// 这里注意路径，定位到cocos2dx的目录
+COCOS_ROOT = ../..
+include $(COCOS_ROOT)/cocos2dx/proj.linux/cocos2dx.mk
+SHAREDLIBS += -lcocos2d
+COCOS_LIBS = $(LIB_DIR)/libcocos2d.so
+$(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
+    @mkdir -p $(@D)
+    $(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(SHAREDLIBS) $(STATICLIBS)
+$(OBJ_DIR)/%.o: %.cpp $(CORE_MAKEFILE_LIST)
+    @mkdir -p $(@D)
+    $(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) $(VISIBILITY) -c $&lt; -o $@
+$(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)
+    @mkdir -p $(@D)
+    $(LOG_CXX)$(CXX) $(CXXFLAGS) $(INCLUDES) $(DEFINES) $(VISIBILITY) -c $&lt; -o $@
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;三、编译&quot;&gt;&lt;a href=&quot;#三、编译&quot; class=&quot;headerlink&quot; title=&quot;三、编译&quot;&gt;&lt;/a&gt;三、编译&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;在prog.linux下执行make
+然后根据提示修改代码代码错误或编译成功。
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;四、执行&quot;&gt;&lt;a href=&quot;#四、执行&quot; class=&quot;headerlink&quot; title=&quot;四、执行&quot;&gt;&lt;/a&gt;四、执行&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;prog.linux 下执行./bin/release/PlayThePlane
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;声明-本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。&quot;&gt;&lt;a href=&quot;#声明-本人比较贱，不愿意使用ide了。自从用来vim后，就爱上它了。&quot; class=&quot;headerlink&quot; title=&quot;声明:本人比较贱，不愿意使用ide了。自从用来v
+    
+    </summary>
+    
+      <category term="cocos2dx" scheme="http://www.codejm.com/categories/cocos2dx/"/>
+    
+    
+      <category term="vim" scheme="http://www.codejm.com/tags/vim/"/>
+    
+      <category term="cocos2dx" scheme="http://www.codejm.com/tags/cocos2dx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu访问局域网共享</title>
+    <link href="http://www.codejm.com/2013/10/20/ubuntu%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB/"/>
+    <id>http://www.codejm.com/2013/10/20/ubuntu访问局域网共享/</id>
+    <published>2013-10-20T00:29:11.000Z</published>
+    <updated>2016-06-02T11:30:26.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;图形模式&lt;br&gt;打开主文件夹，按Ctrl+l，输入smb://192.168.&lt;em&gt;.&lt;/em&gt; ，出现图形界面，填写正确信息后即可访问。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2.命令行&lt;br&gt;mount //192.168.&lt;em&gt;.&lt;/em&gt;/share -o user=username,pass=passwd,[uid=1,gid=1] /home/…&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;图形模式&lt;br&gt;打开主文件夹，按Ctrl+l，输入smb://192.168.&lt;em&gt;.&lt;/em&gt; ，出现图形界面，填写正确信息后即可访问。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2.命令行&lt;br&gt;mount //192.168.&lt;em&gt;.&lt;/em&gt;/share -o u
+    
+    </summary>
+    
+      <category term="ubuntu" scheme="http://www.codejm.com/categories/ubuntu/"/>
+    
+    
+      <category term="ubuntu" scheme="http://www.codejm.com/tags/ubuntu/"/>
+    
+      <category term="共享目录" scheme="http://www.codejm.com/tags/%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu用户目录中文换成英文</title>
+    <link href="http://www.codejm.com/2013/10/08/ubuntu%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%E4%B8%AD%E6%96%87%E6%8D%A2%E6%88%90%E8%8B%B1%E6%96%87/"/>
+    <id>http://www.codejm.com/2013/10/08/ubuntu用户目录中文换成英文/</id>
+    <published>2013-10-08T11:27:07.000Z</published>
+    <updated>2016-06-02T11:30:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;把用户目录下的下载、图片、视频、文档修改成对应的英文&lt;br&gt;打开终端：&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;&lt;br&gt;export LANG=en_US&lt;br&gt;xdg-user-dirs-gtk-update&lt;br&gt;&lt;/pre&gt;&lt;br&gt;弹出的对话框选择确定修改,重启系统就会变成修改后的效果了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;把用户目录下的下载、图片、视频、文档修改成对应的英文&lt;br&gt;打开终端：&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;&lt;br&gt;export LANG=en_US&lt;br&gt;xdg-user-dirs-gtk-update&lt;br&gt;&lt;
+    
+    </summary>
+    
+      <category term="ubuntu" scheme="http://www.codejm.com/categories/ubuntu/"/>
+    
+    
+      <category term="ubuntu" scheme="http://www.codejm.com/tags/ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu下右键以vim方式打开</title>
+    <link href="http://www.codejm.com/2013/09/29/ubuntu%E4%B8%8B%E5%8F%B3%E9%94%AE%E4%BB%A5vim%E6%96%B9%E5%BC%8F%E6%89%93%E5%BC%80/"/>
+    <id>http://www.codejm.com/2013/09/29/ubuntu下右键以vim方式打开/</id>
+    <published>2013-09-29T11:31:21.000Z</published>
+    <updated>2016-06-02T11:50:03.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;原因&quot;&gt;&lt;a href=&quot;#原因&quot; class=&quot;headerlink&quot; title=&quot;原因&quot;&gt;&lt;/a&gt;原因&lt;/h2&gt;&lt;p&gt;编译安装vim7.4之后,打开文件选择打开方式找不到gvim,在/usr/share/applications目录下添加gvim.desktop无效后只能另谋出路了。&lt;/p&gt;
+&lt;h2 id=&quot;修改gedit为gvim&quot;&gt;&lt;a href=&quot;#修改gedit为gvim&quot; class=&quot;headerlink&quot; title=&quot;修改gedit为gvim&quot;&gt;&lt;/a&gt;修改gedit为gvim&lt;/h2&gt;&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+sudo vim /usr/share/applications/gedit.desktop
+// 修改
+Name=gvim
+// 也可以直接写gvim %U --remote-tab-silent 为在tab打开新文件
+Exec=gvim --remote-tab-silent %U
+&lt;/pre&gt;
+
+&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;ubunut 13.04&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;原因&quot;&gt;&lt;a href=&quot;#原因&quot; class=&quot;headerlink&quot; title=&quot;原因&quot;&gt;&lt;/a&gt;原因&lt;/h2&gt;&lt;p&gt;编译安装vim7.4之后,打开文件选择打开方式找不到gvim,在/usr/share/applications目录下添加gvim.deskt
+    
+    </summary>
+    
+      <category term="vim" scheme="http://www.codejm.com/categories/vim/"/>
+    
+    
+      <category term="vim" scheme="http://www.codejm.com/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim编译出错</title>
+    <link href="http://www.codejm.com/2013/08/24/vim%E7%BC%96%E8%AF%91%E5%87%BA%E9%94%99/"/>
+    <id>http://www.codejm.com/2013/08/24/vim编译出错/</id>
+    <published>2013-08-24T10:33:52.000Z</published>
+    <updated>2016-06-02T11:25:27.000Z</updated>
+    
+    <content type="html">&lt;p&gt;在 Redhat x86_64 GNU/Linux环境下以源码方式编译安装vim 7.3 （vim官网），运行./configure –prefix=/home/work/tools/vim-7.3一段时间后报错：&lt;/p&gt;
+&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+configure: error: cannot compute sizeof (off_t) See `config.log&#39; for more details.(exit status = 77)
+&lt;/pre&gt;
+
+&lt;p&gt;google发现，原因为编译时缺少iconv的相关lib，而本地which iconv可以看到机器上是装有iconv的（which iconv输出结果为：/usr/local/bin/iconv）&lt;/p&gt;
+&lt;p&gt;这篇文章中的解决方法为修改/etc/ld.so.conf，确实可以解决问题，但对于非root用户来说，/etc/ld.so.conf是read-only的，比较无语。&lt;br&gt;后来想想，修改ld.so.conf的根本原因只是为了让编译器在make过程中去对应的路径下寻找依赖，于是，一个针对非root用户的办法就有啦，没错，就是通过LD_LIBRARY&lt;em&gt;PATH来曲线救国，^&lt;/em&gt;^。&lt;br&gt;在vim73目录下先执行如下命令：&lt;/p&gt;
+&lt;pre class=&quot;brush: shell; gutter: true&quot;&gt;
+export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH // 为编译器设定额外的搜索路径
+./configure --enable-multibyte --with-features=huge --enable-fontset --enable-hangulinput --enable-netbeans --enable-cscope --enable-sniff --enable-tclinterp --enable-rubyinterp=dynamic --enable-luainterp --enable-mzschemeinterp --enable-xim --enable-gui=gnome2 --enable-gtk2-check --enable-gnome-check --enable-perlinterp=dynamic --enable-pythoninterp=dynamic --disable-selinux
+&lt;/pre&gt;
+
+&lt;p&gt;最后 make &amp;amp;&amp;amp; make install 就可以编译成功了&lt;/p&gt;
+&lt;p&gt;=============== EOF ============&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在 Redhat x86_64 GNU/Linux环境下以源码方式编译安装vim 7.3 （vim官网），运行./configure –prefix=/home/work/tools/vim-7.3一段时间后报错：&lt;/p&gt;
+&lt;pre class=&quot;brush: shell;
+    
+    </summary>
+    
+      <category term="vim" scheme="http://www.codejm.com/categories/vim/"/>
+    
+    
+      <category term="vim" scheme="http://www.codejm.com/tags/vim/"/>
+    
+  </entry>
+  
+</feed>
