@@ -88,49 +88,22 @@
 
 
 
-<meta name="description" content="在终端用mvim命令打开文件到macvim选项卡找到mvim文件
-where
-
-123$ where mvim$ /usr/local/bin/mvim$ vim /usr/local/bin/mvim
-
-文件顶部增加：
-
-1tabs=true
-
-文件最底部if块替换为：
-
-12345678910# Last step:  fire up vim.if [ &amp;quot;$gui&amp;quot; ];">
+<meta name="description" content="在终端用mvim命令打开文件到macvim选项卡找到mvim文件where123$ where mvim$ /usr/local/bin/mvim$ vim /usr/local/bin/mvim
+文件顶部增加：1tabs=true
+文件最底部if块替换为：12345678910# Last step:  fire up vim.if [ &amp;quot;$gui&amp;quot; ]; then  if">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在终端用mvim命令打开文件到macvim选项卡">
 <meta property="og:url" content="http://www.codejm.com/2016/06/16/在终端用mvim命令打开文件到macvim选项卡/index.html">
 <meta property="og:site_name" content="Codejm 一个php程序员">
-<meta property="og:description" content="在终端用mvim命令打开文件到macvim选项卡找到mvim文件
-where
-
-123$ where mvim$ /usr/local/bin/mvim$ vim /usr/local/bin/mvim
-
-文件顶部增加：
-
-1tabs=true
-
-文件最底部if块替换为：
-
-12345678910# Last step:  fire up vim.if [ &amp;quot;$gui&amp;quot; ];">
-<meta property="og:updated_time" content="2016-06-16T05:21:21.000Z">
+<meta property="og:description" content="在终端用mvim命令打开文件到macvim选项卡找到mvim文件where123$ where mvim$ /usr/local/bin/mvim$ vim /usr/local/bin/mvim
+文件顶部增加：1tabs=true
+文件最底部if块替换为：12345678910# Last step:  fire up vim.if [ &amp;quot;$gui&amp;quot; ]; then  if">
+<meta property="og:updated_time" content="2016-06-16T05:22:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在终端用mvim命令打开文件到macvim选项卡">
-<meta name="twitter:description" content="在终端用mvim命令打开文件到macvim选项卡找到mvim文件
-where
-
-123$ where mvim$ /usr/local/bin/mvim$ vim /usr/local/bin/mvim
-
-文件顶部增加：
-
-1tabs=true
-
-文件最底部if块替换为：
-
-12345678910# Last step:  fire up vim.if [ &amp;quot;$gui&amp;quot; ];">
+<meta name="twitter:description" content="在终端用mvim命令打开文件到macvim选项卡找到mvim文件where123$ where mvim$ /usr/local/bin/mvim$ vim /usr/local/bin/mvim
+文件顶部增加：1tabs=true
+文件最底部if块替换为：12345678910# Last step:  fire up vim.if [ &amp;quot;$gui&amp;quot; ]; then  if">
 
 
 
@@ -344,18 +317,9 @@ where
       
 
       
-        <h1 id="在终端用mvim命令打开文件到macvim选项卡"><a href="#在终端用mvim命令打开文件到macvim选项卡" class="headerlink" title="在终端用mvim命令打开文件到macvim选项卡"></a>在终端用mvim命令打开文件到macvim选项卡</h1><h2 id="找到mvim文件"><a href="#找到mvim文件" class="headerlink" title="找到mvim文件"></a>找到mvim文件</h2><ol>
-<li>where</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ where mvim</span><br><span class="line">$ /usr/local/bin/mvim</span><br><span class="line">$ vim /usr/local/bin/mvim</span><br></pre></td></tr></table></figure>
-<ol>
-<li>文件顶部增加：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tabs=true</span><br></pre></td></tr></table></figure>
-<ol>
-<li>文件最底部if块替换为：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Last step:  fire up vim.</span><br><span class="line">if [ &quot;$gui&quot; ]; then</span><br><span class="line">  if $tabs &amp;&amp; [[ `$binary --serverlist` = &quot;VIM&quot; ]]; then</span><br><span class="line">    exec &quot;$binary&quot; -g $opts --remote-tab-silent $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">  else</span><br><span class="line">    exec &quot;$binary&quot; -g $opts $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">  fi</span><br><span class="line">else</span><br><span class="line">  exec &quot;$binary&quot; $opts $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+        <h1 id="在终端用mvim命令打开文件到macvim选项卡"><a href="#在终端用mvim命令打开文件到macvim选项卡" class="headerlink" title="在终端用mvim命令打开文件到macvim选项卡"></a>在终端用mvim命令打开文件到macvim选项卡</h1><h2 id="找到mvim文件"><a href="#找到mvim文件" class="headerlink" title="找到mvim文件"></a>找到mvim文件</h2><h4 id="where"><a href="#where" class="headerlink" title="where"></a>where</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ where mvim</span><br><span class="line">$ /usr/local/bin/mvim</span><br><span class="line">$ vim /usr/local/bin/mvim</span><br></pre></td></tr></table></figure>
+<h4 id="文件顶部增加："><a href="#文件顶部增加：" class="headerlink" title="文件顶部增加："></a>文件顶部增加：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tabs=true</span><br></pre></td></tr></table></figure>
+<h4 id="文件最底部if块替换为："><a href="#文件最底部if块替换为：" class="headerlink" title="文件最底部if块替换为："></a>文件最底部if块替换为：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Last step:  fire up vim.</span><br><span class="line">if [ &quot;$gui&quot; ]; then</span><br><span class="line">  if $tabs &amp;&amp; [[ `$binary --serverlist` = &quot;VIM&quot; ]]; then</span><br><span class="line">    exec &quot;$binary&quot; -g $opts --remote-tab-silent $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">  else</span><br><span class="line">    exec &quot;$binary&quot; -g $opts $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">  fi</span><br><span class="line">else</span><br><span class="line">  exec &quot;$binary&quot; $opts $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -557,7 +521,7 @@ where
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在终端用mvim命令打开文件到macvim选项卡"><span class="nav-number">1.</span> <span class="nav-text">在终端用mvim命令打开文件到macvim选项卡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#找到mvim文件"><span class="nav-number">1.1.</span> <span class="nav-text">找到mvim文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在终端用mvim命令打开文件到macvim选项卡"><span class="nav-number">1.</span> <span class="nav-text">在终端用mvim命令打开文件到macvim选项卡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#找到mvim文件"><span class="nav-number">1.1.</span> <span class="nav-text">找到mvim文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#where"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件顶部增加："><span class="nav-number">1.1.0.2.</span> <span class="nav-text">文件顶部增加：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件最底部if块替换为："><span class="nav-number">1.1.0.3.</span> <span class="nav-text">文件最底部if块替换为：</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
