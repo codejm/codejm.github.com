@@ -247,6 +247,137 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/16/在终端用mvim命令打开文件到macvim选项卡/" itemprop="url">
+                  在终端用mvim命令打开文件到macvim选项卡
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-16T13:13:35+08:00" content="2016-06-16">
+              2016-06-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name">vim</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/16/在终端用mvim命令打开文件到macvim选项卡/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/16/在终端用mvim命令打开文件到macvim选项卡/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="在终端用mvim命令打开文件到macvim选项卡"><a href="#在终端用mvim命令打开文件到macvim选项卡" class="headerlink" title="在终端用mvim命令打开文件到macvim选项卡"></a>在终端用mvim命令打开文件到macvim选项卡</h1><h2 id="找到mvim文件"><a href="#找到mvim文件" class="headerlink" title="找到mvim文件"></a>找到mvim文件</h2><ol>
+<li>where</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ where mvim</span><br><span class="line">$ /usr/local/bin/mvim</span><br><span class="line">$ vim /usr/local/bin/mvim</span><br></pre></td></tr></table></figure>
+<ol>
+<li>文件顶部增加：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tabs=true</span><br></pre></td></tr></table></figure>
+<ol>
+<li>文件最底部if块替换为：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Last step:  fire up vim.</span><br><span class="line">if [ &quot;$gui&quot; ]; then</span><br><span class="line">  if $tabs &amp;&amp; [[ `$binary --serverlist` = &quot;VIM&quot; ]]; then</span><br><span class="line">    exec &quot;$binary&quot; -g $opts --remote-tab-silent $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">  else</span><br><span class="line">    exec &quot;$binary&quot; -g $opts $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">  fi</span><br><span class="line">else</span><br><span class="line">  exec &quot;$binary&quot; $opts $&#123;1:+&quot;$@&quot;&#125;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/03/科学上网/" itemprop="url">
                   科学上网
                 </a>
@@ -1379,131 +1510,6 @@ sudo make install
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/02/20/ubuntu下安装svnversion/" itemprop="url">
-                  ubuntu下安装svnversion
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-02-20T21:23:07+08:00" content="2014-02-20">
-              2014-02-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/02/20/ubuntu下安装svnversion/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/02/20/ubuntu下安装svnversion/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The below should add the repository on 12.04 Precise (the repository doesn’t contain a Source directory, which the add-apt-repository command assumes it will, so I have used a slightly different method).</p>
-<p>sudo sh -c ‘echo “# WANdisco Open Source Repo” &gt;&gt; /etc/apt/sources.list.d/WANdisco.list’<br>sudo sh -c ‘echo “deb <a href="http://opensource.wandisco.com/ubuntu" target="_blank" rel="external">http://opensource.wandisco.com/ubuntu</a> precise svn18” &gt;&gt; /etc/apt/sources.list.d/WANdisco.list’<br>wget -q <a href="http://opensource.wandisco.com/wandisco-debian.gpg" target="_blank" rel="external">http://opensource.wandisco.com/wandisco-debian.gpg</a> -O- | sudo apt-key add -<br>sudo apt-get update<br>To confirm that the new subversion package has been detected, run:</p>
-<p>apt-cache show subversion | grep ‘^Version:’<br>If the 1.8 package is listed, you should then be able to install as normal:</p>
-<p>sudo apt-get install subversion</p>
-<p>==================================================================================================<br>client<br>install software rapidsvn<br>运行rapidsvn出错<br>run rapidsvn error:</p>
-<p>正确修正方案:<br>$ cd /usr/lib<br>$ sudo ln -s libsvn_subr-1.so.0 libsvn_subr-1.so.1<br>$ sudo ln -s libsvn_client-1.so.0 libsvn_client-1.so.1<br>$ sudo ln -s libsvn_wc-1.so.0 libsvn_wc-1.so.1</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1549,7 +1555,7 @@ sudo make install
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1566,7 +1572,7 @@ sudo make install
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
